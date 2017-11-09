@@ -6,7 +6,8 @@ GET /api/all
 GET /api/{id}
 
 POST /api/new
-```{
+```
+{
   "Name": "Test Food",
   "Serving Size": "1 Unit",
   "Calories": 200,
