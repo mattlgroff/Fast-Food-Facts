@@ -1,23 +1,30 @@
 'use strict';
 
-var fs        = require('fs');
-var path      = require('path');
-var Sequelize = require('sequelize');
-var basename  = path.basename(module.filename);
-var env       = process.env.NODE_ENV || 'development';
-var jaws      = process.env.JAWSDB_URL;
-var config    = require(__dirname + '/../config/config.json')[env];
-var db        = {};
+const fs        = require('fs');
+const path      = require('path');
+const Sequelize = require('sequelize');
+const basename  = path.basename(module.filename);
+const env       = process.env.NODE_ENV || 'development';
+const jaws      = process.env.JAWSDB_URL;
+const mysql_pw  = process.env.mysql_pw;
+const config    = require(__dirname + '/../config/config.json')[env];
+let db        = {};
 
 if (config.use_env_variable) {
+  console.log("Using ENV Varaible: " + config.use_env_variable);
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } 
 else if (process.env.JAWSDB_URL){
+  console.log("Using JawsDB: " + process.env.JAWSDB_URL);
   var sequelize = new Sequelize(process.env.JAWSDB_URL);
 } 
+else if (process.env.mysql_pw){
+  console.log("Using Local MySQL PW.");
+  var sequelize = new Sequelize(config.database, config.username, process.env.mysql_pw, config);
+}
 else {
-  let password = process.env.mysql_pw;
-  var sequelize = new Sequelize(config.database, config.username, password, config);
+  console.log("Using default config.json.");
+  var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
 fs
