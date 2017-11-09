@@ -9,6 +9,7 @@ const db = require("./models");
 app.engine("handlebars", exphbs(
   { 
     defaultLayout: "main",
+    //The Helpers here add functions that you can use inside of handlebars.
     helpers:{
       caloriesFromFat: totalFat => parseInt(totalFat) * 9,
       percentDailyTotalFat: totalFat => Math.round(parseFloat(parseInt(totalFat) / 64) * 100),
@@ -21,21 +22,6 @@ app.engine("handlebars", exphbs(
   }
 ));
 app.set("view engine", "handlebars");
-// --- Handlebars Helpers ---
-// //Calories from Fat
-// exphbs.registerHelper('caloriesFromFat', totalFat => totalFat * 9);
-// //% Daily Value from Total Fat
-// exphbs.registerHelper('percentDailyTotalFat', totalFat => parseInt((totalFat / 64) * 100));
-// //% Daily Value from Saturated Fat
-// exphbs.registerHelper('percentDailySatFat', satFat => parseInt((satFat / 20) * 100));
-// //% Daily Value from Cholesterol
-// exphbs.registerHelper('percentDailyChol', chol => parseInt((chol / 300) * 100));
-// //% Daily Value from Sodium
-// exphbs.registerHelper('percentDailySodium', sodium => parseInt((sodium / 2400) * 100));
-// //% Daily Value from Total Carb
-// exphbs.registerHelper('percentDailyTotalCarb', totalCarb => parseInt((totalCarb / 300) * 100));
-// //% Daily Value from Dietary Fiber
-// exphbs.registerHelper('percentDailyDietaryFiber', dietaryFiber => parseInt((dietaryFiber / 25) * 100));
 
 // BodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
