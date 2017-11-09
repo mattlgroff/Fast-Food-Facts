@@ -1,7 +1,11 @@
 # project2electricboogaloo
 Project 2. Z, Carlos, Matt and Jack.
 
-# POST FORMAT
+# API ROUTES
+GET /api/all
+GET /api/{id}
+
+POST /api/new
 ```{
   "Name": "Test Food",
   "Serving Size": "1 Unit",
@@ -22,3 +26,8 @@ Project 2. Z, Carlos, Matt and Jack.
   "Category": "None"
 }
 ```
+
+# HTML ROUTES
+GET /nutrition/{id}
+
+
