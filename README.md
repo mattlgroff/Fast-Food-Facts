@@ -4,6 +4,7 @@ Featuring: Z, Carlos, Matt and Jack.
 
 # API ROUTES
 GET /api/all
+
 GET /api/{id}
 
 POST /api/new
