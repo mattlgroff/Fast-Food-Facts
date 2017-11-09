@@ -1,5 +1,6 @@
-# project2electricboogaloo
-Project 2. Z, Carlos, Matt and Jack.
+# Project 2: Electric Boogaloo
+Featuring: Z, Carlos, Matt and Jack.
+[Electric Boogaloo](https://electricboogaloo.herokuapp.com/)
 
 # API ROUTES
 GET /api/all
