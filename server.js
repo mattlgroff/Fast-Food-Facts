@@ -31,8 +31,8 @@ app.use(bodyParser.json());
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 
-// DB Sync
-db.sequelize.sync({ force: true }).then(() => {
+// DB Sync - force: false means it will NOT drop the tables if they exist
+db.sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log("App listening on PORT " + PORT);
   });
