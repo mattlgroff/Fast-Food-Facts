@@ -16,116 +16,103 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Total Fat': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Saturated Fat': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Trans Fat': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Cholesterol': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Sodium': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Total Carbohydrate': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Dietary Fiber': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Sugars': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Protein': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Vitamin A': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Vitamin C': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Calcium': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
     'Iron': {
       type: DataTypes.INTEGER, 
-      allowNull: false, 
+      allowNull: true, 
       validate: {
         min: 0
-      },
-      defaultValue: 0
+      }
     },
-    'Category': { 
+    'USDA ID': { 
       type: DataTypes.STRING, 
-      defaultValue: "None",
+      allowNull: false,
+      defaultValue: "User Submitted",
       validate: {
         len: [1,255]
       }
