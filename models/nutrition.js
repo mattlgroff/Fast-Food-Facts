@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     'Total Fat': {
       type: DataTypes.INTEGER, 
-      allowNull: true, 
+      allowNull: false, 
       validate: {
         min: 0
       }
@@ -55,7 +55,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     'Total Carbohydrate': {
       type: DataTypes.INTEGER, 
-      allowNull: true, 
+      allowNull: false, 
       validate: {
         min: 0
       }
@@ -76,7 +76,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     'Protein': {
       type: DataTypes.INTEGER, 
-      allowNull: true, 
+      allowNull: false, 
       validate: {
         min: 0
       }
@@ -111,8 +111,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     'USDA ID': { 
       type: DataTypes.STRING, 
-      allowNull: false,
-      defaultValue: "User Submitted",
+      allowNull: true,
       validate: {
         len: [1,255]
       }
