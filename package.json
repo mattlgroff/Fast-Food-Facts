@@ -1,6 +1,6 @@
 {
   "name": "project2electricboogaloo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Project 2 Electric Boogaloo",
   "main": "server.js",
   "scripts": {
@@ -19,9 +19,11 @@
   "homepage": "https://github.com/mattlgroff/project2electricboogaloo#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "fs": "0.0.1-security",
+    "mocha": "^4.0.1",
     "mysql2": "^1.4.2",
     "path": "^0.12.7",
     "sequelize": "^4.22.5"
