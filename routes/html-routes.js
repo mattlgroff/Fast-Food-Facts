@@ -10,4 +10,8 @@ module.exports = app => {
   app.get("/nutrition/:id", (req, res) => {
     htmlController.selectOne(req, res, req.params.id);
   });
+
+  app.get("/search", (req, res) => {
+    res.render("search", null);
+  })
 }
