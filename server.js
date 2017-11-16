@@ -4,21 +4,14 @@ const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
+const helperFunctions = require("./controllers/helper.js")
 
 // Handlebars
 app.engine("handlebars", exphbs(
   { 
     defaultLayout: "main",
     //The Helpers here add functions that you can use inside of handlebars.
-    helpers:{
-      caloriesFromFat: totalFat => parseInt(totalFat) * 9,
-      percentDailyTotalFat: totalFat => Math.round(parseFloat(parseInt(totalFat) / 64) * 100),
-      percentDailySatFat: satFat => Math.round(parseFloat(parseInt(satFat) / 20) * 100),
-      percentDailyChol: chol => Math.round(parseFloat(parseInt(chol) / 300) * 100),
-      percentDailySodium: sodium => Math.round(parseFloat(parseInt(sodium) / 2400) * 100),
-      percentDailyTotalCarb: totalCarb => Math.round(parseFloat(parseInt(totalCarb) / 300) * 100),
-      percentDailyDietaryFiber: dietaryFiber => Math.round(parseFloat(parseInt(dietaryFiber) / 25) * 100)
-    }
+    helpers:helperFunctions
   }
 ));
 app.set("view engine", "handlebars");
