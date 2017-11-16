@@ -1,0 +1,70 @@
+<!-- Javascript -->
+<script type="text/javascript" src="../../assets/js/createFood.js"></script>
+
+<!-- Validator JS-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
+<div class="main container">
+  <div class="row">
+    <form role="form" data-toggle="validator" class="form-group">
+      <!-- Required -->
+      <h3>* = Required</h3>
+      <label for="name" class="control-label">Name of Food or Drink *</label>
+      <input type="text" class="form-control" required="required" id="name" data-error="Please enter a name."/>
+      <div class="help-block with-errors "></div>
+
+      <label for="servingSize">Serving Size *</label>
+      <input type="text" class="form-control" required="required" id="servingSize" data-error="Please enter a Serving Size."/>
+      <div class="help-block with-errors "></div>
+
+      <label for="calories">Calories *</label>
+      <input type="number" class="form-control" required="required" id="calories" min="0" step="1" data-error="Please enter the Calories"/>
+      <div class="help-block with-errors "></div>
+
+      <label for="totalFat">Total Fat (grams) *</label>
+      <input type="number" class="form-control" required="required" id="totalFat" min="0" step="1" data-error="Please enter the Total Fat."/>
+      <div class="help-block with-errors "></div>
+
+      <label for="totalCarbohydrate">Total Carbohydrate (grams) *</label>
+      <input type="number" class="form-control" required="required" id="totalCarbohydrate" min="0" step="1" data-error="Please enter the Total Carbohydrates."/>
+      <div class="help-block with-errors "></div>
+
+      <label for="protein">Protein (grams)</label>
+      <input type="number" class="form-control" required="required" id="protein" min="0" step="1" data-error="Please enter the Protein."/>
+      <div class="help-block with-errors "></div>
+
+      <!-- Optional -->
+      <label for="saturatedFat">Saturated Fat (grams)</label>
+      <input type="number" class="form-control" id="saturatedFat" min="0" step="1" />
+
+      <label for="transFat">Trans Fat (grams)</label>
+      <input type="number" class="form-control" id="transFat" min="0" step="1" />
+
+      <label for="cholesterol">Cholesterol (milligrams)</label>
+      <input type="number" class="form-control" id="cholesterol" min="0" step="1" />
+
+      <label for="sodium">Sodium (milligrams)</label>
+      <input type="number" class="form-control" id="sodium" min="0" step="1" />
+
+      <label for="dietaryFiber">Dietary Fiber (grams)</label>
+      <input type="number" class="form-control" id="dietaryFiber" min="0" step="1" />
+
+      <label for="sugars">Sugars (grams)</label>
+      <input type="number" class="form-control" id="sugars" min="0" step="1" />
+
+      <label for="vitaminA">Vitamin A (%)</label>
+      <input type="number" class="form-control" id="vitaminA" min="0" step="1" />
+
+      <label for="vitaminC">Vitamin C (%)</label>
+      <input type="number" class="form-control" id="vitaminC" min="0" step="1" />
+
+      <label for="calcium">Calcium (milligrams)</label>
+      <input type="number" class="form-control" id="calcium" min="0" step="1" />
+
+      <label for="iron">Iron (milligrams)</label>
+      <input type="number" class="form-control" id="iron" min="0" step="1" />
+
+      <input type="submit" class="btn btn-primary" id="submit">
+    </form>
+  </div> <!--End Row-->  
+</div> <!--End Container Main-->

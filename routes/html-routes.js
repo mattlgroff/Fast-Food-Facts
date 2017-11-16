@@ -10,4 +10,14 @@ module.exports = app => {
   app.get("/nutrition/:id", (req, res) => {
     htmlController.selectOne(req, res, req.params.id);
   });
+
+  //Create Food Form
+  app.get("/create", (req, res) => {
+    //TODO: Null will be replaced with the User object containing the logged in user
+    res.render("createFood",null);
+  });
+
+  app.post("/create", (req, res) => {
+    htmlController.createFood(req.body, res);
+  });
 }
