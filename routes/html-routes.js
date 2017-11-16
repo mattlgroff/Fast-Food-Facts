@@ -16,4 +16,8 @@ module.exports = app => {
     //TODO: Null will be replaced with the User object containing the logged in user
     res.render("createFood",null);
   });
+
+  app.post("/create", (req, res) => {
+    htmlController.createFood(req.body, res);
+  });
 }

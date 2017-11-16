@@ -18,6 +18,20 @@ module.exports = {
     .catch(err => {
       error(req, res, err);
     });
+  },
+  createFood: function(obj, res){
+    db.Nutrition.create(obj)
+    .then(results => {
+      //console.log(results);
+      console.log("ID: " + results.dataValues.id);
+      res.json({
+        "redirect":true,
+        "redirect_url":"http://localhost:8080/nutrition/" + results.dataValues.id
+      });
+    })
+    .catch(err => {
+      console.error(err);
+    });
   }
 }
 

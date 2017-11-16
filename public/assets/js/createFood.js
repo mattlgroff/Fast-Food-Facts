@@ -1,40 +1,98 @@
-$(document).ready(function(){
+$( document ).ready(function() {
   $("#submit").on("click", function(){
     event.preventDefault();
     submitFunc();
-  }
+  });
 });
 
 function submitFunc(){
-  //Check for Null Values
+  //Make a new obj 'newFood' and run values through functions
   let newFood = {
-    "Name": checkForUndefined(name),
-    "Serving Size": checkForUndefined(servingSize),
-    "Calories": checkForUndefined(calories),
-    "Total Fat": checkForUndefined(totalFat),
-    "Saturated Fat": checkForUndefined(saturatedFat),
-    "Trans Fat": checkForUndefined(transFat),
-    "Cholesterol": checkForUndefined(cholesterol),
-    "Sodium": checkForUndefined(sodium),
-    "Total Carbohydrate": checkForUndefined(totalCarbohydrate),
-    "Dietary Fiber": checkForUndefined(dietaryFiber),
-    "Sugars": checkForUndefined(sugars),
-    "Protein": checkForUndefined(protein),
-    "Vitamin A": checkForUndefined(vitaminA),
-    "Vitamin C": checkForUndefined(vitaminC),
-    "Calcium": checkForUndefined(calcium),
-    "Iron": checkForUndefined(iron)
+    "Name": checkForEmptyString("name"),
+    "Serving Size": checkForEmptyString("servingSize"),
+    "Calories": checkForEmptyInt("calories"),
+    "Total Fat": checkForEmptyInt("totalFat"),
+    "Saturated Fat": checkForEmptyInt("saturatedFat"),
+    "Trans Fat": checkForEmptyInt("transFat"),
+    "Cholesterol": checkForEmptyInt("cholesterol"),
+    "Sodium": checkForEmptyInt("sodium"),
+    "Total Carbohydrate": checkForEmptyInt("totalCarbohydrate"),
+    "Dietary Fiber": checkForEmptyInt("dietaryFiber"),
+    "Sugars": checkForEmptyInt("sugars"),
+    "Protein": checkForEmptyInt("protein"),
+    "Vitamin A": checkForEmptyInt("vitaminA"),
+    "Vitamin C": checkForEmptyInt("vitaminC"),
+    "Calcium": checkForEmptyInt("calcium"),
+    "Iron": checkForEmptyInt("iron")
   }
 
+  //Remove null values from the obj
+  clean(newFood);
+
+  //Debugging
   console.log(newFood);
+
+  //Ajax Post Request to Server
+  postToSerer(newFood);
 
 }
 
-function checkForUndefined(element){
-  if($("#" + element).val().trim() === undefined){
-    return null
+function postToSerer(obj){
+  $.ajax({
+    type: "POST",
+    url: window.location.href,
+    data: obj,
+    dataType: "json",
+    success: function(response) {
+      if (response.redirect) {
+        console.log("Redirect URL: " + response.redirect_url);
+        window.location.href = response.redirect_url;
+        console.log(window.location.href);
+      }
+      else {
+          emptyForm();
+          alert("Sucessfully added to DB!");
+      }
+    }
+  });
+}
+
+function checkForEmptyString(element){
+  if($("#" + element).val().trim() === ""){
+    return null;
   }
   else {
-    return $("#" + element).val().trim()
+    let val = $("#" + element).val().trim();
+    
+    return val;
   }
+}
+
+function checkForEmptyInt(element){
+  if($("#" + element).val().trim() === ""){
+    return null;
+  }
+  else {
+    let val = $("#" + element).val().trim();
+    parseInt(val);
+
+    return val;
+  }
+}
+
+function clean(obj) {
+  for (var propName in obj) { 
+    if (obj[propName] === null || obj[propName] === undefined) {
+      delete obj[propName];
+    }
+  }
+}
+
+function emptyForm(){
+  $("#name").empty();
+  $("#servingSize").empty();
+  $("#calories").empty();
+  $("#protein").empty();
+  $("#totalFat").empty();
+  $("#totalCarbohydrate").empty();
 }

@@ -1,7 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
 
   const Nutrition = sequelize.define('Nutrition', {
-
+    
     'Name': {
       type: DataTypes.STRING,
       allowNull: false
