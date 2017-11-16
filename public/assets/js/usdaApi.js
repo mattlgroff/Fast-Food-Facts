@@ -43,7 +43,8 @@ $(document).ready(function(){
           for(var i=0; i < dataArr.length; i++){
             var nameArr = dataArr[i].name.split('UPC: ');
             var title = nameArr[0].toLowerCase();
-            title.charAt(0).toUpperCase();
+            console.log(title.toUpperCase())
+
             var content = nameArr[1];
             $('<div>')
             .addClass('col-lg-4')
