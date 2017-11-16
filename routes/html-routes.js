@@ -11,6 +11,12 @@ module.exports = app => {
     htmlController.selectOne(req, res, req.params.id);
   });
 
+
+  app.get("/search", (req, res) => {
+    res.render("search", null);
+  });
+
+
   //Create Food Form
   app.get("/create", (req, res) => {
     //TODO: Null will be replaced with the User object containing the logged in user
