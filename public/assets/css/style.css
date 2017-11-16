@@ -11,6 +11,10 @@ p {
   margin: 0;
 }
 
+.red {
+  color: red;
+}
+
 .float_right {
   float: right;
   margin-right: 80px;

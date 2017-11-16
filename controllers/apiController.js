@@ -8,7 +8,7 @@ module.exports = {
       res.json(results);
     })
     .catch(err => {
-      error(err);
+      error(req, res, err);
     });
   },
   selectAll: function(req, res){
@@ -18,7 +18,7 @@ module.exports = {
       res.json(results);
     })
     .catch(err => {
-      error(err);
+      error(req, res, err);
     });
   },
   selectOne: function(req, res, id){
@@ -32,12 +32,12 @@ module.exports = {
       res.json(result);
     })
     .catch(err => {
-      error(err);
+      error(req, res, err);
     });
   }
 }
 
-function error(err){
+function error(req, res, err){
   console.error(err);
   res.json({
     'Error': err
