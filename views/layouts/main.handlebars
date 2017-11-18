@@ -25,6 +25,11 @@
   </head>
 
   <body>
+    {{#if user.email}}
+      <h1>Logged in as {{user.email}}.</h1>
+    {{else}}
+      <h1>Please <a href="/signin">login</a>.</h1>
+    {{/if}}
     {{{ body }}}
   </body>
 
