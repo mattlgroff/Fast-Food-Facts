@@ -125,7 +125,7 @@ module.exports = function(passport, user) {
 
         function(req, email, password, done) {
 
-            var User = user;
+            const User = models.User;
 
             var isValidPassword = function(userpass, password) {
 
