@@ -40,7 +40,21 @@ module.exports = {
     .catch(err => {
       console.error(err);
     });
-  }
+  },
+  addToList: function(req, res){
+    db.Nutrition.findOne({ 
+      where: {
+        id: req.body.nutrition_id
+      } 
+    })
+    .then(nutrition => {
+      db.UserNutrition.create(req.body.user_id,req.body.nutrition_id);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+
+    }
 }
 
 function error(req, res, err){

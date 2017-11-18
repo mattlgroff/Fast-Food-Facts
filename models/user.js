@@ -1,5 +1,3 @@
-const models = require("../models");
-
 module.exports = function(sequelize, Sequelize) {
 
     var User = sequelize.define('User', {
@@ -17,17 +15,8 @@ module.exports = function(sequelize, Sequelize) {
         }
 
     }, {
-        timestamps: true
+        timestamps: false
     });
-
-    User.associate = function(models) {
-        // Associating User with Nutrition
-        User.belongsToMany(models.Nutrition, {
-            as: 'Users', 
-            through: "UserNutrition",
-            foreignKey: "user_id"
-        });
-      };
 
     return User;
 
