@@ -40,8 +40,28 @@ module.exports = {
     .catch(err => {
       console.error(err);
     });
+  },
+  findAll: function(req, res) {
+    db.user.getNutrition({
+      where: {
+        user_id: req.user_id
+      }
+    }).then(result => {
+      console.log(result);
+      // if(result === undefined || result === null){
+      //   error(req, res, result);
+      // }
+      // else {
+      //   res.render("myList",{
+      //     user: req.user,
+      //     list: result.dataValues
+      //   });
+      // }
+    }).catch(err => {
+      error(req, res, err);
+    });
   }
-}
+};
 
 function error(req, res, err){
   console.error(err);
