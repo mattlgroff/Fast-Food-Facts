@@ -1,10 +1,18 @@
 const express = require("express");
+const session = require('express-session');
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const app = express();
+const passport = require('passport');
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
 const helperFunctions = require("./controllers/helper.js")
+
+//Passport
+require('./config/passport/passport.js')(passport, db.user);
+app.use(session({ secret: 'drop table cat', resave: true, saveUninitialized: true })); //session secret
+app.use(passport.initialize());
+app.use(passport.session()); //persistent login sessions
 
 // Handlebars
 app.engine("handlebars", exphbs(
@@ -28,8 +36,9 @@ app.use(function(req, res, next) {
 });
 
 // Routes
-require("./routes/api-routes.js")(app);
-require("./routes/html-routes.js")(app);
+require("./routes/apiRoutes.js")(app);
+require("./routes/htmlRoutes.js")(app);
+require('./routes/authRoutes.js')(app, passport);
 
 // DB Sync - force: false means it will NOT drop the tables if they exist
 db.sequelize.sync({ force: true }).then(() => {
