@@ -25,7 +25,7 @@ module.exports = {
   createFood: function(req, res){
     db.Nutrition.create(req.body)
     .then(results => {
-      let baseUrl = "http://electricboogaloo.herokuapp.com/nutrition/"
+      let baseUrl = "http://fastfoodfacts.herokuapp.com/nutrition/"
 
       if(process.env.mysql_pw){
         baseUrl = "http://localhost:8080/nutrition/";
