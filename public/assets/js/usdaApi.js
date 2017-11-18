@@ -81,7 +81,8 @@ $(document).ready(function(){
 
   $('#cardsContainer').on('click', 'a.nutritionCard', function() {
       var ndbno = $(this).data().ndbno;
-      var url = "https://api.nal.usda.gov/ndb/reports/V2?ndbno="+ndbno+"&type=b&format=json&api_key=sEypfLXBh6IJ2K7npHuoolMvrfH48HALizvk1mUD";
+      var url = "https://api.nal.usda.gov/ndb/reports/?ndbno="+ndbno+"&type=b&format=json&api_key=sEypfLXBh6IJ2K7npHuoolMvrfH48HALizvk1mUD";
+      // https://api.nal.usda.gov/ndb/reports/
       console.log(url);
       $.ajax({
         url: url,
