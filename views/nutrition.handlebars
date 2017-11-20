@@ -1,19 +1,21 @@
 <!-- Javascript -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="../../assets/js/frontNutrition.js"></script>
-
 <div class="container main">
   <div class="row">
-    <div id="piechart" style="width: 500px; height: 500px;" class="col-sm-12 col-xs-12 col-md-6 col-lg-6"> <!-- Begin First Col -->
+    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6"> <!-- Begin First Col -->
+      <div id="piechart" style="width: 500px; height: 500px;">
+      </div>
+      <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Check%20out%20my%20Nutrition%20Facts%20for%20{{nutrition.[Name]}}&url=https://fff.herokuapp.com/nutrition/{{nutrition.id}}&hashtags=FastFoodFacts">Tweet</a>
     </div> <!-- End First Col -->
 
     <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6"><!-- Begin Second Col -->
-      {{#if [USDA ID]}}<h3>USDA Verified Data</h3><p>Nutrition facts provided by the USDA.</p>
+      {{#if nutrition.[USDA ID]}}<h3>USDA Verified Data</h3><p>Nutrition facts provided by the USDA.</p>
       {{else}}<h3 class="red">User Submitted Data</h3><p class="red">Nutrition facts may not be complete or accurate.</p>{{/if}}
       <section class="performance-facts">
       <header class="performance-facts__header">
-        <h3 class="performance-facts__title"><span id="item">{{[Name]}}</span></h3>
-        <p>ID: {{id}}</p>
+        <h3 class="performance-facts__title"><span id="item">{{nutrition.[Name]}}</span></h3>
+        <p>ID: {{nutrition.id}}</p>
         <p>Serving Size {{"Serving Size"}}</p>
       </header>
       <table class="performance-facts__table">
@@ -28,10 +30,10 @@
           <tr>
             <th colspan="2">
               <b>Calories</b>
-              <span>{{[Calories]}}</span>
+              <span>{{nutrition.[Calories]}}</span>
             </th>
             <td>
-              Calories from Fat {{caloriesFromFat [Total Fat]}}
+              Calories from Fat {{caloriesFromFat nutrition.[Total Fat]}}
             </td>
           </tr>
           <tr class="thick-row">
@@ -42,103 +44,103 @@
           <tr>
             <th colspan="2">
               <b>Total Fat</b>
-              <span id="fat">{{[Total Fat]}}</span>g
+              <span id="fat">{{nutrition.[Total Fat]}}</span>g
             </th>
             <td>
-                <b>{{percentDailyTotalFat [Total Fat]}}%</b>
+                <b>{{percentDailyTotalFat nutrition.[Total Fat]}}%</b>
               </td>
           </tr>
           <tr>
             <td class="blank-cell">
             </td>
-            {{#if [Saturated Fat]}}
+            {{#if nutrition.[Saturated Fat]}}
             <th>
               Saturated Fat
-              {{[Saturated Fat]}}g
+              {{nutrition.[Saturated Fat]}}g
             </th>
             <td>
-              <b>{{percentDailySatFat [Saturated Fat]}}%</b>
+              <b>{{percentDailySatFat nutrition.[Saturated Fat]}}%</b>
             </td>
             {{else}}
             <th class="red">
               Saturated Fat
-              {{[Saturated Fat]}}g
+              {{nutrition.[Saturated Fat]}}g
             </th>
             {{/if}}
           </tr>
           <tr>
             <td class="blank-cell">
             </td>
-            {{#if [Trans Fat]}}
+            {{#if nutrition.[Trans Fat]}}
             <th>
               Trans Fat
-              {{[Trans Fat]}}g
+              {{nutrition.[Trans Fat]}}g
             </th>
             {{else}}
             <th class="red">
               Trans Fat
-              {{[Trans Fat]}}g
+              {{nutrition.[Trans Fat]}}g
             </th>
             {{/if}}
             <td>
             </td>
           </tr>
           <tr>
-            {{#if Cholesterol}}
+            {{#if nutrition.Cholesterol}}
             <th colspan="2">
               <b>Cholesterol</b>
-              {{[Cholesterol]}}mg
+              {{nutrition.[Cholesterol]}}mg
             </th>
             <td>
-              <b>{{percentDailyChol [Cholesterol]}}%</b>
+              <b>{{percentDailyChol nutrition.[Cholesterol]}}%</b>
             </td>
             {{else}}
             <th class="red" colspan="2">
               <b>Cholesterol</b>
-              {{[Cholesterol]}}mg
+              {{nutrition.[Cholesterol]}}mg
             </th>
             {{/if}}
           </tr>
           <tr>
-            {{#if Sodium}}
+            {{#if nutrition.Sodium}}
             <th colspan="2">
               <b>Sodium</b>
-              {{[Sodium]}}mg
+              {{nutrition.[Sodium]}}mg
             </th>
             <td>
-              <b>{{percentDailySodium [Sodium]}}%</b>
+              <b>{{percentDailySodium nutrition.[Sodium]}}%</b>
             </td>
             {{else}}
             <th class="red" colspan="2">
               <b>Sodium</b>
-              {{[Sodium]}}mg
+              {{nutrition.[Sodium]}}mg
             </th>
             {{/if}}
           </tr>
           <tr>
             <th colspan="2">
               <b>Total Carbohydrate</b>
-              <span id="carbs">{{[Total Carbohydrate]}}</span>g
+              <span id="carbs">{{nutrition.[Total Carbohydrate]}}</span>g
             </th>
             <td>
-              <b>{{percentDailyTotalCarb [Total Carbohydrate]}}%</b>
+              <b>{{percentDailyTotalCarb nutrition.[Total Carbohydrate]}}%</b>
             </td>
           </tr>
           <tr>
             <td class="blank-cell">
             </td>
-            {{#if [Dietary Fiber]}}
+            {{#if nutrition.[Dietary Fiber]}}
             <th>
               Dietary Fiber
-              {{"Dietary Fiber"}}g
+              {{nutrition.[Dietary Fiber]}}g
             </th>
             <td>
-              <b>{{percentDailyDietaryFiber [Dietary Fiber]}}%</b>
+              <b>{{percentDailyDietaryFiber nutrition.[Dietary Fiber]}}%</b>
             </td>
             {{else}}
             <th class="red">
               Dietary Fiber
-              {{"Dietary Fiber"}}g
+              {{nutrition.[Dietary Fiber]}}g
             </th>
             {{/if}}
             
@@ -146,15 +148,15 @@
           <tr>
             <td class="blank-cell">
             </td>
-            {{#if Sugars}}
+            {{#if nutrition.Sugars}}
             <th>
               Sugars
-              {{[Sugars]}}g
+              {{nutrition.[Sugars]}}g
             </th>
             {{else}}
             <th class="red">
               Sugars
-              {{[Sugars]}}g
+              {{nutrition.[Sugars]}}g
             </th>
             {{/if}}
             <td>
@@ -163,7 +165,7 @@
           <tr class="thick-end">
             <th colspan="2">
               <b>Protein</b>
-              <span id="protein">{{[Protein]}}</span>g
+              <span id="protein">{{nutrition.[Protein]}}</span>g
             </th>
             <td>
             </td>
@@ -174,50 +176,50 @@
       <table class="performance-facts__table--grid">
         <tbody>
           <tr>
-            {{#if [Vitamin A]}}
+            {{#if nutrition.[Vitamin A]}}
             <td colspan="2">
               Vitamin A
-              {{[Vitamin A]}}%
+              {{nutrition.[Vitamin A]}}%
             </td>
             {{else}}
             <td class="red" colspan="2">
               Vitamin A
-              {{[Vitamin A]}}
+              {{nutrition.[Vitamin A]}}
             </td>
             {{/if}}
-            {{#if [Vitamin C]}}
+            {{#if nutrition.[Vitamin C]}}
             <td>
               Vitamin C
-              {{[Vitamin C]}}%
+              {{nutrition.[Vitamin C]}}%
             </td>
             {{else}}
             <td class="red">
               Vitamin C
-              {{[Vitamin C]}}
+              {{nutrition.[Vitamin C]}}
             </td>
             {{/if}}
           </tr>
           <tr class="thin-end">
-            {{#if Calcium}}
+            {{#if nutrition.Calcium}}
             <td colspan="2">
               Calcium
-              {{[Calcium]}}%
+              {{nutrition.[Calcium]}}%
             </td>
             {{else}}
             <td class="red" colspan="2">
               Calcium
-              {{[Calcium]}}
+              {{nutrition.[Calcium]}}
             </td>
             {{/if}}
-            {{#if Iron}}
+            {{#if nutrition.Iron}}
             <td>
               Iron
-              {{[Iron]}}%
+              {{nutrition.[Iron]}}%
             </td>
             {{else}}
             <td class="red">
               Iron
-              {{[Iron]}}
+              {{nutrition.[Iron]}}
             </td>
             {{/if}}
           </tr>

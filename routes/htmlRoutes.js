@@ -11,19 +11,18 @@ module.exports = app => {
     htmlController.selectOne(req, res, req.params.id);
   });
 
-
+  //Search Page
   app.get("/search", (req, res) => {
-    res.render("search", null);
+    res.render("search", req.user);
   });
-
 
   //Create Food Form
   app.get("/create", (req, res) => {
-    //TODO: Null will be replaced with the User object containing the logged in user
-    res.render("createFood",null);
+    res.render("createFood", req.user);
   });
 
+  //Post to create a new food
   app.post("/create", (req, res) => {
-    htmlController.createFood(req.body, res);
+    htmlController.createFood(req, res);
   });
 }
