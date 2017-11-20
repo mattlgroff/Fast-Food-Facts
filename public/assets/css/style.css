@@ -119,29 +119,6 @@ p {
 .thin-end {
   border-bottom: 1px solid black;
 }
-.loader {
-  display: none;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #000000;
-  border-right: 16px solid #dddddd;
-  border-bottom: 16px solid #a81a1a;
-  border-left: 16px solid #dddddd;
-  width: 100px;
-  height: 100px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
-
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 
 .card {
   width: 100%;
@@ -151,4 +128,7 @@ p {
 }
 .searchBar {
   margin: 40px 0px;
+}
+.alert {
+  display: none;
 }

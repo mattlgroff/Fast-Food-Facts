@@ -22,11 +22,12 @@ module.exports = {
   createFood: function(obj, res){
     db.Nutrition.create(obj)
     .then(results => {
-      let baseUrl = "http://electricboogaloo.herokuapp.com/nutrition/"
+      // let baseUrl = "http://electricboogaloo.herokuapp.com/nutrition/";
+      let baseUrl = "http://localhost:8080/nutrition/";
 
-      if(process.env.mysql_pw){
-        baseUrl = "http://localhost:8080/nutrition/";
-      }
+      // if(process.env.mysql_pw){
+      //   baseUrl = "http://localhost:8080/nutrition/";
+      // }
 
       //console.log("ID: " + results.dataValues.id);
       res.json({
