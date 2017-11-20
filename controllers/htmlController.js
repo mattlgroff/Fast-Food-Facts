@@ -12,15 +12,18 @@ module.exports = {
         error(req, res, result);
       }
       else {
-        res.render("nutrition",result.dataValues);
+        res.render("nutrition",{
+          nutrition: result.dataValues,
+          user: req.user
+        });
       }
     })
     .catch(err => {
       error(req, res, err);
     });
   },
-  createFood: function(obj, res){
-    db.Nutrition.create(obj)
+  createFood: function(req, res){
+    db.Nutrition.create(req.body)
     .then(results => {
       // let baseUrl = "http://electricboogaloo.herokuapp.com/nutrition/";
       let baseUrl = "http://localhost:8080/nutrition/";
