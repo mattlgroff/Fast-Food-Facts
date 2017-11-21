@@ -25,4 +25,9 @@ module.exports = app => {
   app.post("/create", (req, res) => {
     htmlController.createFood(req, res);
   });
+
+  //Post to create a new food
+  app.post("/nutrition", (req, res) => {
+    htmlController.addToList(req, res);
+  });
 }
