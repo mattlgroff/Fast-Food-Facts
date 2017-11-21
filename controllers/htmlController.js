@@ -30,8 +30,6 @@ module.exports = {
       if(process.env.mysql_pw){
         baseUrl = "http://localhost:8080/nutrition/";
       }
-
-      //console.log("ID: " + results.dataValues.id);
       res.json({
         "redirect":true,
         "redirect_url":baseUrl + results.dataValues.id
@@ -40,7 +38,20 @@ module.exports = {
     .catch(err => {
       console.error(err);
     });
-  }
+  },
+  addToList: function(req, res){
+    db.UserNutrition.create({ 
+      user_id: req.body.user_id,
+      nutrition_id: req.body.nutrition_id
+    })
+    .then(results => {
+      res.json(results.dataValues);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+
+    }
 }
 
 function error(req, res, err){
