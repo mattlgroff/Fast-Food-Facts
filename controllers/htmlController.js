@@ -25,12 +25,13 @@ module.exports = {
   createFood: function(req, res){
     db.Nutrition.create(req.body)
     .then(results => {
-      // let baseUrl = "http://electricboogaloo.herokuapp.com/nutrition/";
-      let baseUrl = "http://localhost:8080/nutrition/";
+      let baseUrl = "http://electricboogaloo.herokuapp.com/nutrition/";
+      // let baseUrl = "http://localhost:8080/nutrition/";
 
-      // if(process.env.mysql_pw){
-      //   baseUrl = "http://localhost:8080/nutrition/";
-      // }
+      if(process.env.mysql_pw){
+        baseUrl = "http://localhost:8080/nutrition/";
+      }
+      console.log(baseUrl)
 
       //console.log("ID: " + results.dataValues.id);
       res.json({

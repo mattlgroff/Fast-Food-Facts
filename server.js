@@ -16,7 +16,7 @@ app.use(passport.session()); //persistent login sessions
 
 // Handlebars
 app.engine("handlebars", exphbs(
-  { 
+  {
     defaultLayout: "main",
     //The Helpers here add functions that you can use inside of handlebars.
     helpers:helperFunctions
@@ -41,7 +41,7 @@ require("./routes/htmlRoutes.js")(app);
 require('./routes/authRoutes.js')(app, passport);
 
 // DB Sync - force: false means it will NOT drop the tables if they exist
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log("App listening on PORT " + PORT);
   });

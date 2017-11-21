@@ -123,6 +123,7 @@ $(document).ready(function(){
         url: url,
         method: "GET"
       }).then(function(results){
+        console.log(results)
         var nutrientsArr = results.report.food.nutrients;
         //Make an array out of the nutrients sent to us from USDA
         var nutrientsArr = results.report.food.nutrients;
@@ -186,20 +187,20 @@ $(document).ready(function(){
             nutritionObj["Protein"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
 
-          if (nutrientsArr[index].name.includes("Vitamin A") ){
-            nutritionObj["Vitamin A"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
+          if (nutrientsArr[index].name.includes("Vitamin A")){
+            nutritionObj["Vitamin A"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value) / 5000) * 100);
           }
 
           if (nutrientsArr[index].name.includes("Vitamin C") ){
-            nutritionObj["Vitamin C"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
+            nutritionObj["Vitamin C"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value) / 60) * 100);
           }
 
           if (nutrientsArr[index].name.includes("Calcium") ){
-            nutritionObj["Calcium"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
+            nutritionObj["Calcium"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value) / 1000) * 100);
           }
 
           if (nutrientsArr[index].name.includes("Iron") ){
-            nutritionObj["Iron"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
+            nutritionObj["Iron"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value) / 18) * 100);
           }
 
         });

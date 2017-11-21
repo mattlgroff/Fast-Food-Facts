@@ -129,6 +129,6 @@ p {
 .searchBar {
   margin: 40px 0px;
 }
-.alert {
+div.alert {
   display: none;
 }

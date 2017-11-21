@@ -16,7 +16,7 @@
       <header class="performance-facts__header">
         <h3 class="performance-facts__title"><span id="item">{{nutrition.[Name]}}</span></h3>
         <p>ID: {{nutrition.id}}</p>
-        <p>Serving Size {{"Serving Size"}}</p>
+        <p>Serving Size {{nutrition.[Serving Size]}}</p>
       </header>
       <table class="performance-facts__table">
         <thead>
@@ -143,7 +143,7 @@
               {{nutrition.[Dietary Fiber]}}g
             </th>
             {{/if}}
-            
+
           </tr>
           <tr>
             <td class="blank-cell">
@@ -172,7 +172,7 @@
           </tr>
         </tbody>
       </table>
-      
+
       <table class="performance-facts__table--grid">
         <tbody>
           <tr>
@@ -225,9 +225,9 @@
           </tr>
         </tbody>
       </table>
-      
+
       <p class="small-info">* Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs:</p>
-      
+
       <table class="performance-facts__table--small small-info">
         <thead>
           <tr>
@@ -276,7 +276,7 @@
           </tr>
         </tbody>
       </table>
-      
+
       <p class="small-info">
         Calories per gram:
       </p>
@@ -287,7 +287,7 @@
         &bull;
         Protein 4
       </p>
-      
+
       </section>
     </div> <!-- End Second Col -->
   </div> <!-- End Row-->

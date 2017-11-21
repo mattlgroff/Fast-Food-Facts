@@ -6,7 +6,7 @@ body {
   overflow: hidden;
 }
 
-h1 {
+h1.loading {
   position: relative;
   margin: 0 auto;
   top: 25vh;
