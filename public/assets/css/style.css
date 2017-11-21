@@ -109,10 +109,6 @@ p {
     }
   }
 }
-
-.text-center {
-  text-align: center;
-}
 .thick-end {
   border-bottom: 10px solid black;
 }
@@ -125,10 +121,12 @@ p {
   height: 150px;
   margin: 10px 0px;
   padding: 10px;
-}
-.searchBar {
-  margin: 40px 0px;
+  border: 1px solid grey;
+  border-radius: 10px;
 }
 div.alert {
   display: none;
+}
+.alignSearchBar {
+  text-align: center !important;
 }

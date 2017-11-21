@@ -80,39 +80,41 @@ $(document).ready(function(){
         url: this.toQueryString(),
         type: 'GET'
       }).done(function(data){
-        if(data.list.total !== 0){
-          var dataArr = data.list.item;
-          $('#cardsContainer').empty();
-          for(var i=0; i < dataArr.length; i++){
-            var ndbno = dataArr[i].ndbno;
-            var nameArr = dataArr[i].name.split('UPC: ');
-            var title = nameArr[0].toLowerCase();
-            var captializeTitle = capitalizeFirstLetter(title).substring(0, 60);
-            captializeTitle.length === 60 ? captializeTitle += '...' : captializeTitle;
-            if(nameArr[1]){
-              var content = 'UPC: ' + nameArr[1];
-            }
-            $('<a>')
-            .addClass('nutritionCard')
-            .attr('href', '#')
-            .data('ndbno', ndbno)
-            .addClass('col-lg-4')
-            .append(
-              $('<div>')
-              .addClass('card')
+        if(data){
+          if(data.list.total !== 0){
+            var dataArr = data.list.item;
+            $('#cardsContainer').empty();
+            for(var i=0; i < dataArr.length; i++){
+              var ndbno = dataArr[i].ndbno;
+              var nameArr = dataArr[i].name.split('UPC: ');
+              var title = nameArr[0].toLowerCase();
+              var captializeTitle = capitalizeFirstLetter(title).substring(0, 60);
+              captializeTitle.length === 60 ? captializeTitle += '...' : captializeTitle;
+              if(nameArr[1]){
+                var content = 'UPC: ' + nameArr[1];
+              }
+              $('<a>')
+              .addClass('nutritionCard')
+              .attr('href', '#')
+              .data('ndbno', ndbno)
+              .addClass('col-lg-3')
               .append(
                 $('<div>')
-                .addClass('card-block')
+                .addClass('card')
                 .append(
-                  $('<h4>')
-                  .addClass('card-title')
-                  .text(captializeTitle),
-                  $('<p>')
-                  .addClass('card-text')
-                  .text(content)
+                  $('<div>')
+                  .addClass('card-block')
+                  .append(
+                    $('<h4>')
+                    .addClass('card-title')
+                    .text(captializeTitle),
+                    $('<p>')
+                    .addClass('card-text')
+                    .text(content)
+                  )
                 )
-              )
-            ).appendTo('#cardsContainer');
+              ).appendTo('#cardsContainer');
+            }
           }
         }
       });
@@ -123,12 +125,14 @@ $(document).ready(function(){
         url: url,
         method: "GET"
       }).then(function(results){
-        console.log(results)
-        var nutrientsArr = results.report.food.nutrients;
+        if(results.report.food.ru === 'ml'){
+          nutritionObj["Serving Size"] = '100 ml';
+        }
+        else if(results.report.food.ru === 'g'){
+          nutritionObj["Serving Size"] = '100 grams';
+        }
         //Make an array out of the nutrients sent to us from USDA
         var nutrientsArr = results.report.food.nutrients;
-
-
         var nameArr = results.report.food.name.split('UPC: ');
         var nameString = nameArr[0].toLowerCase();
         nutritionObj["Name"] = checkForEmptyString(capitalizeFirstLetter(nameString).substring(0, 30));
@@ -139,14 +143,8 @@ $(document).ready(function(){
         else {
           nutritionObj["USDA ID"] = nameArr[1];
         }
-
         //Going over each item of the nutrients array looking for our values
         nutrientsArr.forEach(function(currentValue, index, array) {
-          var measuresArr = nutrientsArr[index].measures;
-          if (Object.keys(measuresArr[0]).includes("qty", "eunit")){
-            nutritionObj["Serving Size"] = measuresArr[0].qty +  measuresArr[0].eunit;
-          }
-
           if (nutrientsArr[index].name.includes("Energy") ){
             nutritionObj["Calories"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
@@ -187,11 +185,11 @@ $(document).ready(function(){
             nutritionObj["Protein"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
 
-          if (nutrientsArr[index].name.includes("Vitamin A")){
+          if (nutrientsArr[index].name.includes("Vitamin A") === true && nutrientsArr[index].unit.includes("IU") === true){
             nutritionObj["Vitamin A"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value) / 5000) * 100);
           }
 
-          if (nutrientsArr[index].name.includes("Vitamin C") ){
+          if (nutrientsArr[index].name.includes("Vitamin C")  === true && nutrientsArr[index].unit.includes("mg") === true){
             nutritionObj["Vitamin C"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value) / 60) * 100);
           }
 
