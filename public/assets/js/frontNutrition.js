@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+  $("#addToList").on("click", function(){
+    addToList();
+  });
+
   //Grab our Fat/Protein/Carbs from Nutrition facts loaded onto nutrition.handlebars
   let fat = $("#fat").text();
   fat = parseInt(fat);
@@ -41,3 +45,25 @@ $(document).ready(function(){
   }
 
 });
+
+function addToList(){
+  let nutrition_id = parseInt( $("#nutrition_id").text() );
+  let user_id = parseInt( $("#user_id").text() );
+
+  console.log("ID: " + nutrition_id);
+
+  let obj = {
+    nutrition_id: nutrition_id,
+    user_id: user_id
+  }
+
+  $.ajax({
+    type: "POST",
+    url: "/nutrition",
+    data: obj,
+    dataType: "json",
+    success: function(response) {
+      alert("Added to your list!");
+    }
+  });
+}
