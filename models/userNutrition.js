@@ -1,28 +1,23 @@
 const models = require("../models");
 
-module.exports = function(sequelize, Sequelize) {
+module.exports = function(sequelize, DataTypes) {
 
-    var UserNutrition = sequelize.define('UserNutrition', {
+    const UserNutrition = sequelize.define('UserNutrition', {
 
-        // user_id: {
-        //     type: Sequelize.INTEGER,
-        //     allowNull: false
-        // },
+        user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
 
-        // nutrition_id: {
-        //     type: Sequelize.INTEGER,
-        //     allowNull: false
-        // }
+        nutrition_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        }
 
+    }, {
+      freezeTableName: true,
+      tableName: 'UserNutrition'
     });
-
-
-    UserNutrition.associate = function(models) {
-      
-      UserNutrition.hasMany(models.User);
-      UserNutrition.hasMany(models.Nutrition);
-
-    }
 
     return UserNutrition;
 
