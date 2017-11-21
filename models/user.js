@@ -1,33 +1,22 @@
-const models = require("../models");
+module.exports = function(sequelize, DataTypes) {
 
-module.exports = function(sequelize, Sequelize) {
-
-    var User = sequelize.define('User', {
+  const User = sequelize.define('User', {
 
         email: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             validate: {
                 isEmail: true
             }
         },
 
         password: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         }
 
     }, {
-        timestamps: true
+        timestamps: false
     });
-
-    User.associate = function(models) {
-        // Associating User with Nutrition
-        User.belongsToMany(models.Nutrition, {
-            as: 'Users', 
-            through: "UserNutrition",
-            foreignKey: "user_id"
-        });
-      };
 
     return User;
 
