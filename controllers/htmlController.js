@@ -42,21 +42,21 @@ module.exports = {
     });
   },
   findAll: function(req, res) {
-    db.user.getNutrition({
+    db.userNutrition.findAll({
       where: {
         user_id: req.user_id
       }
     }).then(result => {
       console.log(result);
-      // if(result === undefined || result === null){
-      //   error(req, res, result);
-      // }
-      // else {
-      //   res.render("myList",{
-      //     user: req.user,
-      //     list: result.dataValues
-      //   });
-      // }
+      if(result === undefined || result === null){
+        error(req, res, result);
+      }
+      else {
+        res.render("myList",{
+          user: req.user,
+          list: result.dataValues
+        });
+      }
     }).catch(err => {
       error(req, res, err);
     });
