@@ -1,5 +1,3 @@
-const models = require("../models");
-
 module.exports = function(sequelize, DataTypes) {
 
   const Nutrition = sequelize.define('Nutrition', {
@@ -119,15 +117,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-
-  Nutrition.associate = function(models) {
-    // Associating Nutrition with User
-    Nutrition.belongsToMany(models.User, {
-        as: 'Nutritions', 
-        through: "UserNutrition",
-        foreignKey: "nutrition_id"
-    });
-  };
 
  return Nutrition;
 };
