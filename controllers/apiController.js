@@ -34,6 +34,21 @@ module.exports = {
     .catch(err => {
       error(req, res, err);
     });
+  },
+  userNutrition: function(req, res){
+    db.UserNutrition.findAll({
+      attributes: ['nutrition_id'],
+      where: {
+        user_id: req.params.id
+      }
+    })
+    .then(result => {
+      var mapped = result.map(results => results.dataValues.nutrition_id);
+      res.json({myList: mapped});
+    })
+    .catch(err => {
+      error(req, res, err);
+    });
   }
 }
 
