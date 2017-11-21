@@ -10,9 +10,9 @@ $(document).ready(function(){
 
   let protein = $("#protein").text();
   protein = parseInt(protein);
-  
+
   let carbs = $("#carbs").text();
-  carbs = parseInt(carbs);  
+  carbs = parseInt(carbs);
 
   let item = $("#item").text();
 
@@ -33,10 +33,10 @@ $(document).ready(function(){
       title: 'Macronutrient Breakdown of ' + item,
       is3D: false,
       slices: {
-            0: { color: '#FB484C' }, //red
-            1: { color: '#9ACA28' }, //green
-            2: { color: '#1276B9' } //blue
-          }
+        0: { color: '#FB484C' }, //red
+        1: { color: '#9ACA28' }, //green
+        2: { color: '#1276B9' } //blue
+      }
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));

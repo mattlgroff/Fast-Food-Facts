@@ -25,11 +25,12 @@ module.exports = {
   createFood: function(req, res){
     db.Nutrition.create(req.body)
     .then(results => {
-      let baseUrl = "http://fastfoodfacts.herokuapp.com/nutrition/"
+      let baseUrl = "http://electricboogaloo.herokuapp.com/nutrition/";
 
       if(process.env.mysql_pw){
         baseUrl = "http://localhost:8080/nutrition/";
       }
+
       res.json({
         "redirect":true,
         "redirect_url":baseUrl + results.dataValues.id
@@ -62,7 +63,7 @@ module.exports = {
     });
   },
   addToList: function(req, res){
-    db.UserNutrition.create({ 
+    db.UserNutrition.create({
       user_id: req.body.user_id,
       nutrition_id: req.body.nutrition_id,
       nutrition_name: req.body.nutrition_name

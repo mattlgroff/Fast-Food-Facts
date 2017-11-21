@@ -16,7 +16,7 @@ app.use(passport.session()); //persistent login sessions
 
 // Handlebars
 app.engine("handlebars", exphbs(
-  { 
+  {
     defaultLayout: "main",
     //The Helpers here add functions that you can use inside of handlebars.
     helpers:helperFunctions
