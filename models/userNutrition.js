@@ -12,6 +12,11 @@ module.exports = function(sequelize, DataTypes) {
         nutrition_id: {
             type: DataTypes.INTEGER,
             allowNull: false
+        },
+
+        nutrition_name: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
 
     }, {

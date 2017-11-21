@@ -49,12 +49,15 @@ $(document).ready(function(){
 function addToList(){
   let nutrition_id = parseInt( $("#nutrition_id").text() );
   let user_id = parseInt( $("#user_id").text() );
+  let nutrition_name = $("#item").text();
 
+  console.log("name:" + nutrition_name);
   console.log("ID: " + nutrition_id);
 
   let obj = {
     nutrition_id: nutrition_id,
-    user_id: user_id
+    user_id: user_id,
+    nutrition_name: nutrition_name
   }
 
   $.ajax({

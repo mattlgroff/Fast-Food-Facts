@@ -23,7 +23,7 @@ module.exports = app => {
 
   //View MyList
   app.get("/mylist", (req, res) => {
-    htmlController.findAll(req, res, req.user);
+    htmlController.findAll(req, res);
   });
 
   //Post to create a new food

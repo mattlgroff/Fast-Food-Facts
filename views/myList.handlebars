@@ -1,9 +1,12 @@
 {{#if user.email}}
-<h1>Logged in as {{user.email}}.</h1>
+
 
 <div class="container main">
   <div id="foodRows" class="row">
-    
+    {{#each myList}}
+      <p>Food: {{nutrition_name}}</p>
+      <br>
+    {{/each}}
   </div>
 </div>
 

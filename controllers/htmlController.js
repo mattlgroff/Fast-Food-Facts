@@ -42,17 +42,19 @@ module.exports = {
   findAll: function(req, res) {
     db.UserNutrition.findAll({
       where: {
-        user_id: req.user_id
+        user_id: req.user.id
       }
     }).then(result => {
-      console.log(result);
       if(result === undefined || result === null){
         error(req, res, result);
       }
       else {
-        res.render("myList",{
-          user: req.user,
-          list: result.dataValues
+        var mapped = result.map(results => results.dataValues);
+        console.log(mapped);
+        res.render(
+          "myList", 
+          {myList: mapped,
+          user: req.user 
         });
       }
     }).catch(err => {
@@ -62,7 +64,8 @@ module.exports = {
   addToList: function(req, res){
     db.UserNutrition.create({ 
       user_id: req.body.user_id,
-      nutrition_id: req.body.nutrition_id
+      nutrition_id: req.body.nutrition_id,
+      nutrition_name: req.body.nutrition_name
     })
     .then(results => {
       res.json(results.dataValues);
