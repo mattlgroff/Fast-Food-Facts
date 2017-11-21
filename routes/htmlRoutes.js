@@ -21,6 +21,11 @@ module.exports = app => {
     res.render("createFood", req.user);
   });
 
+  //View MyList
+  app.get("/mylist", (req, res) => {
+    htmlController.findAll(req, res);
+  });
+
   //Post to create a new food
   app.post("/create", (req, res) => {
     htmlController.createFood(req, res);

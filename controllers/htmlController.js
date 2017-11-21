@@ -39,10 +39,33 @@ module.exports = {
       console.error(err);
     });
   },
+  findAll: function(req, res) {
+    db.UserNutrition.findAll({
+      where: {
+        user_id: req.user.id
+      }
+    }).then(result => {
+      if(result === undefined || result === null){
+        error(req, res, result);
+      }
+      else {
+        var mapped = result.map(results => results.dataValues);
+        console.log(mapped);
+        res.render(
+          "myList", 
+          {myList: mapped,
+          user: req.user 
+        });
+      }
+    }).catch(err => {
+      error(req, res, err);
+    });
+  },
   addToList: function(req, res){
     db.UserNutrition.create({ 
       user_id: req.body.user_id,
-      nutrition_id: req.body.nutrition_id
+      nutrition_id: req.body.nutrition_id,
+      nutrition_name: req.body.nutrition_name
     })
     .then(results => {
       res.json(results.dataValues);
@@ -50,9 +73,8 @@ module.exports = {
     .catch(err => {
       console.error(err);
     });
-
-    }
-}
+  }
+};
 
 function error(req, res, err){
   console.error(err);
