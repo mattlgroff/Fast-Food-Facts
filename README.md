@@ -5,7 +5,9 @@ Featuring: Z, Carlos, Matt and Jack.
 # API ROUTES
 GET /api/all
 
-GET /api/{id}
+GET /api/{nutrition_id}
+
+GET /api/user/{user_id}
 
 POST /api/new
 ```
@@ -33,4 +35,13 @@ POST /api/new
 # HTML ROUTES
 GET /nutrition/{id}
 
+GET /create
+
+POST /create
+
+GET /search
+
+GET /signin
+
+POST /signin
 
