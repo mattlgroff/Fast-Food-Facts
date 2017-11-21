@@ -13,12 +13,12 @@ module.exports = app => {
 
   //Search Page
   app.get("/search", (req, res) => {
-    res.render("search", req.user);
+    res.render("search", {user:req.user});
   });
 
   //Create Food Form
   app.get("/create", (req, res) => {
-    res.render("createFood", req.user);
+    res.render("createFood", {user:req.user});
   });
 
   //View MyList
