@@ -1,16 +1,16 @@
 module.exports.signin = function(req, res) {
-    res.render('signin');
+    res.render('signin', {user:req.user});
 
 }
 
 module.exports.signup = function(req, res) {
-    res.render('signin');
+    res.render('signin', {user:req.user});
 
 }
 
 module.exports.dashboard = function(req, res) {
 
-    res.render('dashboard');
+    res.render('dashboard', {user:req.user});
 
 }
 
