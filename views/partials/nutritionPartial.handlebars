@@ -1,0 +1,320 @@
+<!-- Javascript -->
+<script type="text/javascript" src="../../assets/js/frontNutrition.js"></script>
+
+
+<div class="container">
+  <div class="row">
+    <div class="modal-header col-lg-11">
+      <div class="modal-title" id="exampleModalLabel">
+        {{#if nutrition.[USDA ID]}}
+        <h5>USDA Verified Data</h5>
+        <p>Nutrition facts provided by the USDA.</p>
+        {{else}}<h5 class="red">User Submitted Data</h5>
+        <p class="red">Nutrition facts may not be complete or accurate.</p>{{/if}}
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal-body">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6"> <!-- Begin First Col -->
+        <div id="piechart">
+        </div>
+      </div> <!-- End First Col -->
+
+      <div class="col-sm-12 col-xs-12 col-md-6 col-lg-2"><!-- Begin Second Col -->
+        <section class="performance-facts">
+          <header class="performance-facts__header">
+            <h3 class="performance-facts__title"><span id="item">{{nutrition.[Name]}}</span></h3>
+            <p>ID: {{nutrition.id}}</p>
+            <p>Serving Size {{nutrition.[Serving Size]}}</p>
+          </header>
+          <table class="performance-facts__table">
+            <thead>
+              <tr>
+                <th colspan="3" class="small-info">
+                  Nutrition Per Serving
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th colspan="2">
+                  <b>Calories</b>
+                  <span>{{nutrition.[Calories]}}</span>
+                </th>
+                <td>
+                  Calories from Fat {{caloriesFromFat nutrition.[Total Fat]}}
+                </td>
+              </tr>
+              <tr class="thick-row">
+                <td colspan="3" class="small-info">
+                  <b class="float_right">% Daily Value*</b>
+                </td>
+              </tr>
+              <tr>
+                <th colspan="2">
+                  <b>Total Fat</b>
+                  <span id="fat">{{nutrition.[Total Fat]}}</span>g
+                </th>
+                <td>
+                  <b>{{percentDailyTotalFat nutrition.[Total Fat]}}%</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="blank-cell">
+                </td>
+                {{#if nutrition.[Saturated Fat]}}
+                <th>
+                  Saturated Fat
+                  {{nutrition.[Saturated Fat]}}g
+                </th>
+                <td>
+                  <b>{{percentDailySatFat nutrition.[Saturated Fat]}}%</b>
+                </td>
+                {{else}}
+                <th class="red">
+                  Saturated Fat
+                  {{nutrition.[Saturated Fat]}}g
+                </th>
+                {{/if}}
+              </tr>
+              <tr>
+                <td class="blank-cell">
+                </td>
+                {{#if nutrition.[Trans Fat]}}
+                <th>
+                  Trans Fat
+                  {{nutrition.[Trans Fat]}}g
+                </th>
+                {{else}}
+                <th class="red">
+                  Trans Fat
+                  {{nutrition.[Trans Fat]}}g
+                </th>
+                {{/if}}
+                <td>
+                </td>
+              </tr>
+              <tr>
+                {{#if nutrition.Cholesterol}}
+                <th colspan="2">
+                  <b>Cholesterol</b>
+                  {{nutrition.[Cholesterol]}}mg
+                </th>
+                <td>
+                  <b>{{percentDailyChol nutrition.[Cholesterol]}}%</b>
+                </td>
+                {{else}}
+                <th class="red" colspan="2">
+                  <b>Cholesterol</b>
+                  {{nutrition.[Cholesterol]}}mg
+                </th>
+                {{/if}}
+              </tr>
+              <tr>
+                {{#if nutrition.Sodium}}
+                <th colspan="2">
+                  <b>Sodium</b>
+                  {{nutrition.[Sodium]}}mg
+                </th>
+                <td>
+                  <b>{{percentDailySodium nutrition.[Sodium]}}%</b>
+                </td>
+                {{else}}
+                <th class="red" colspan="2">
+                  <b>Sodium</b>
+                  {{nutrition.[Sodium]}}mg
+                </th>
+                {{/if}}
+              </tr>
+              <tr>
+                <th colspan="2">
+                  <b>Total Carbohydrate</b>
+                  <span id="carbs">{{nutrition.[Total Carbohydrate]}}</span>g
+                </th>
+                <td>
+                  <b>{{percentDailyTotalCarb nutrition.[Total Carbohydrate]}}%</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="blank-cell">
+                </td>
+                {{#if nutrition.[Dietary Fiber]}}
+                <th>
+                  Dietary Fiber
+                  {{nutrition.[Dietary Fiber]}}g
+                </th>
+                <td>
+                  <b>{{percentDailyDietaryFiber nutrition.[Dietary Fiber]}}%</b>
+                </td>
+                {{else}}
+                <th class="red">
+                  Dietary Fiber
+                  {{nutrition.[Dietary Fiber]}}g
+                </th>
+                {{/if}}
+
+              </tr>
+              <tr>
+                <td class="blank-cell">
+                </td>
+                {{#if nutrition.Sugars}}
+                <th>
+                  Sugars
+                  {{nutrition.[Sugars]}}g
+                </th>
+                {{else}}
+                <th class="red">
+                  Sugars
+                  {{nutrition.[Sugars]}}g
+                </th>
+                {{/if}}
+                <td>
+                </td>
+              </tr>
+              <tr class="thick-end">
+                <th colspan="2">
+                  <b>Protein</b>
+                  <span id="protein">{{nutrition.[Protein]}}</span>g
+                </th>
+                <td>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table class="performance-facts__table--grid">
+            <tbody>
+              <tr>
+                {{#if nutrition.[Vitamin A]}}
+                <td colspan="2">
+                  Vitamin A
+                  {{nutrition.[Vitamin A]}}%
+                </td>
+                {{else}}
+                <td class="red" colspan="2">
+                  Vitamin A
+                  {{nutrition.[Vitamin A]}}
+                </td>
+                {{/if}}
+                {{#if nutrition.[Vitamin C]}}
+                <td>
+                  Vitamin C
+                  {{nutrition.[Vitamin C]}}%
+                </td>
+                {{else}}
+                <td class="red">
+                  Vitamin C
+                  {{nutrition.[Vitamin C]}}
+                </td>
+                {{/if}}
+              </tr>
+              <tr class="thin-end">
+                {{#if nutrition.Calcium}}
+                <td colspan="2">
+                  Calcium
+                  {{nutrition.[Calcium]}}%
+                </td>
+                {{else}}
+                <td class="red" colspan="2">
+                  Calcium
+                  {{nutrition.[Calcium]}}
+                </td>
+                {{/if}}
+                {{#if nutrition.Iron}}
+                <td>
+                  Iron
+                  {{nutrition.[Iron]}}%
+                </td>
+                {{else}}
+                <td class="red">
+                  Iron
+                  {{nutrition.[Iron]}}
+                </td>
+                {{/if}}
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="small-info">* Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs:</p>
+
+          <table class="performance-facts__table--small small-info">
+            <thead>
+              <tr>
+                <td colspan="2"></td>
+                <th>Calories:</th>
+                <th>2,000</th>
+                <th>2,500</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th colspan="2">Total Fat</th>
+                <td>Less than</td>
+                <td>65g</td>
+                <td>80g</td>
+              </tr>
+              <tr>
+                <td class="blank-cell"></td>
+                <th>Saturated Fat</th>
+                <td>Less than</td>
+                <td>20g</td>
+                <td>25g</td>
+              </tr>
+              <tr>
+                <th colspan="2">Cholesterol</th>
+                <td>Less than</td>
+                <td>300mg</td>
+                <td>300 mg</td>
+              </tr>
+              <tr>
+                <th colspan="2">Sodium</th>
+                <td>Less than</td>
+                <td>2,400mg</td>
+                <td>2,400mg</td>
+              </tr>
+              <tr>
+                <th colspan="3">Total Carbohydrate</th>
+                <td>300g</td>
+                <td>375g</td>
+              </tr>
+              <tr>
+                <td class="blank-cell"></td>
+                <th colspan="2">Dietary Fiber</th>
+                <td>25g</td>
+                <td>30g</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="small-info">
+            Calories per gram:
+          </p>
+          <p class="small-info text-center">
+            Fat 9
+            &bull;
+            Carbohydrate 4
+            &bull;
+            Protein 4
+          </p>
+
+        </section>
+      </div> <!-- End Second Col -->
+    </div> <!-- End Row-->
+  </div><!-- End Container Main -->
+</div>
+<div class="modal-footer">
+  <div id="sharing">
+    <button id="addToList" class="btn btn-primary">Add {{nutrition.[Name]}} to My List</button>
+    <a class="twitter-share-button btn btn-primary" href="https://twitter.com/intent/tweet?text=Check%20out%20my%20Nutrition%20Facts%20for%20{{nutrition.[Name]}}&url=http://fastfoodfacts.herokuapp.com/nutrition/{{nutrition.id}}&hashtags=FastFoodFacts">Tweet</a>
+  </div>
+</div>

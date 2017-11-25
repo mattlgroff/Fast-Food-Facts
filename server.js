@@ -6,7 +6,7 @@ const app = express();
 const passport = require('passport');
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
-const helperFunctions = require("./controllers/helper.js")
+const helperFunctions = require("./controllers/helper.js");
 
 //Passport
 require('./config/passport/passport.js')(passport, db.user);
@@ -22,8 +22,8 @@ app.engine("handlebars", exphbs(
     helpers:helperFunctions
   }
 ));
-app.set("view engine", "handlebars");
 
+app.set("view engine", "handlebars");
 // BodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -41,7 +41,7 @@ require("./routes/htmlRoutes.js")(app);
 require('./routes/authRoutes.js')(app, passport);
 
 // DB Sync - force: false means it will NOT drop the tables if they exist
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log("App listening on PORT " + PORT);
   });

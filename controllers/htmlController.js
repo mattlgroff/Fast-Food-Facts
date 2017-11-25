@@ -25,16 +25,15 @@ module.exports = {
   createFood: function(req, res){
     db.Nutrition.create(req.body)
     .then(results => {
-      let baseUrl = "http://electricboogaloo.herokuapp.com/nutrition/";
-
-      if(process.env.mysql_pw){
-        baseUrl = "http://localhost:8080/nutrition/";
+      if(results === undefined || results === null ){
+        error(req, res, result);
       }
-
-      res.json({
-        "redirect":true,
-        "redirect_url":baseUrl + results.dataValues.id
-      });
+      else {
+        res.render("partials/nutritionPartial", {
+          nutrition: results.dataValues,
+          layout: false
+        });
+      }
     })
     .catch(err => {
       console.error(err);
@@ -53,9 +52,9 @@ module.exports = {
         var mapped = result.map(results => results.dataValues);
         console.log(mapped);
         res.render(
-          "myList", 
+          "myList",
           {myList: mapped,
-          user: req.user 
+          user: req.user
         });
       }
     }).catch(err => {

@@ -1,4 +1,14 @@
 $(document).ready(function(){
+  $.fn.extend({
+    animateCss: function (animationName) {
+      var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+      this.addClass('animated ' + animationName).one(animationEnd, function() {
+        $(this).removeClass('animated ' + animationName);
+      });
+      return this;
+    }
+  });
+
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -75,7 +85,6 @@ $(document).ready(function(){
     * @return {[JSON]} [Recipes Data]
     */
     requestNutritions: function(){
-      $('#recipe-container').empty();
       $.ajax({
         url: this.toQueryString(),
         type: 'GET'
@@ -94,7 +103,7 @@ $(document).ready(function(){
                 var content = 'UPC: ' + nameArr[1];
               }
               $('<a>')
-              .addClass('nutritionCard')
+              .addClass('nutritionCard animated fadeInUp delay-0'+i+'s')
               .attr('href', '#')
               .data('ndbno', ndbno)
               .addClass('col-lg-3')
@@ -216,8 +225,10 @@ $(document).ready(function(){
         method:'POST',
         data: obj
       }).then(function(results){
-        if(results.redirect){
-          window.location.replace(results.redirect_url);
+        if(results){
+          $('.modal-content').empty();
+          $('.modal-content').append(results)
+          $('#myModal').modal('show')
         }
       });
     });
