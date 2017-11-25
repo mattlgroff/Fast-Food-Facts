@@ -1,22 +1,23 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
 
-<h3>Sign In</h3>
-<form id="signin" name="signin" role="form" data-toggle="validator" method="post" action="/signin">
+<div class="container main">
+  <h3>Sign In</h3>
+  <form id="signin" name="signin" role="form" data-toggle="validator" method="post" action="/signin">
+    <div class="form-group">
+      <label for="email" class="control-label">Email Address</label>
+      <input class="form-control" id="email" name="email" type="email" placeholder="Email" data-error="Please enter a valid email address." required="required">
+      <div class="help-block with-errors"></div>
+    </div>
 
-  <div class="form-group">
-    <label for="email" class="control-label">Email Address</label>
-    <input class="form-control" id="email" name="email" type="email" placeholder="Email" data-error="Please enter a valid email address." required="required">
-    <div class="help-block with-errors"></div>
-  </div>
-
-  <div class="form-group">
-    <label for="password" class="control-label">Password</label>
-    <input name="password" id="password" type="password" data-minlength="4" class="form-control" placeholder="Password" required="required">
-    <div class="help-block">Minimum of 4 characters</div>
-    <div class="help-block with-errors"></div>
-  </div>
-    <input class="btn btn-primary" type="submit" formaction="/signin" value="Sign In"></input>
-    <input class="btn btn-primary" type="submit" formaction="/signup" value="Sign Up"></input>
-</form>
+    <div class="form-group">
+      <label for="password" class="control-label">Password</label>
+      <input name="password" id="password" type="password" data-minlength="4" class="form-control" placeholder="Password" required="required">
+      <div class="help-block">Minimum of 4 characters</div>
+      <div class="help-block with-errors"></div>
+    </div>
+      <input class="btn btn-primary" type="submit" formaction="/signin" value="Sign In"></input>
+      <input class="btn btn-primary" type="submit" formaction="/signup" value="Sign Up"></input>
+  </form>
+</div>
 
 
