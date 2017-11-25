@@ -23,22 +23,68 @@ module.exports = {
     });
   },
   createFood: function(req, res){
-    db.Nutrition.create(req.body)
-    .then(results => {
-      let baseUrl = "http://electricboogaloo.herokuapp.com/nutrition/";
+    //If the food has a USDA, we check if it exists. 
+    if(req.body["USDA ID"]){
+      db.Nutrition.findOne({
+        where: {
+          "USDA ID": req.body["USDA ID"]
+        }
+      })
+      .then(results => {
+        console.log("Found a USDA ID, does it have any value?");
 
-      if(process.env.mysql_pw){
-        baseUrl = "http://localhost:8080/nutrition/";
-      }
+        //A USDA Exists and is in the database. Respond with redirect URL.
+        if(results.dataValues.id){
+          console.log("ID of found result: " + results.dataValues.id);
 
-      res.json({
-        "redirect":true,
-        "redirect_url":baseUrl + results.dataValues.id
+          res.json({
+            "redirect":true,
+            "redirect_url":baseUrl + results.dataValues.id
+          });
+        }
+        //A USDA ID exists, but none is found in the Database. Create a new entry. Respond with new URL.
+        else{
+          db.Nutrition.create(req.body)
+          .then(results => {
+            let baseUrl = "http://electricboogaloo.herokuapp.com/nutrition/";
+
+            if(process.env.mysql_pw){
+              baseUrl = "http://localhost:8080/nutrition/";
+            }
+
+            res.json({
+              "redirect":true,
+              "redirect_url":baseUrl + results.dataValues.id
+            });
+          })
+          .catch(err => {
+            console.error(err);
+          });
+        }
+      })
+      .catch(err => {
+        console.error(err);
       });
-    })
-    .catch(err => {
-      console.error(err);
-    });
+    }
+    //The food has no USDA ID, so we create it in the database.
+    else{
+      db.Nutrition.create(req.body)
+      .then(results => {
+        let baseUrl = "http://electricboogaloo.herokuapp.com/nutrition/";
+
+        if(process.env.mysql_pw){
+          baseUrl = "http://localhost:8080/nutrition/";
+        }
+
+        res.json({
+          "redirect":true,
+          "redirect_url":baseUrl + results.dataValues.id
+        });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    }
   },
   findAll: function(req, res) {
     db.UserNutrition.findAll({
