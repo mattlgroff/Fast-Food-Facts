@@ -21,6 +21,11 @@ module.exports = app => {
     res.render("index", {user:req.user});
   });
 
+   //About Page
+  app.get("/about", (req, res) => {
+    res.render("about", {user:req.user});
+  });
+
   //Select One Nutrition from ID
   app.get("/nutrition/:id", (req, res) => {
     htmlController.selectOne(req, res, req.params.id);
@@ -45,6 +50,11 @@ module.exports = app => {
   //Post to create a new food
   app.post("/nutrition", (req, res) => {
     htmlController.addToList(req, res);
+  });
+
+  //Post to create a new food
+  app.post("/nutrition/inmylist", (req, res) => {
+    htmlController.inMyList(req, res);
   });
 
 
