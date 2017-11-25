@@ -139,8 +139,7 @@ div.alert {
 .searchBar {
   position: absolute;
   top: 40%;
-  left: 25%;
-  width: 60%;
+  width: 100%;
 }
 .modal-body, .modal-content {
   width: 800px;

@@ -1,4 +1,5 @@
 const db = require("../models");
+const request = require('request')
 
 module.exports = {
   selectOne: function(req, res, id){
@@ -29,10 +30,22 @@ module.exports = {
         error(req, res, result);
       }
       else {
-        res.render("partials/nutritionPartial", {
-          nutrition: results.dataValues,
-          layout: false
+        request('http://api.walmartlabs.com/v1/items?apiKey=grfg2f6ffkqhzyy92raeyfyn&upc='+results.dataValues['USDA ID']+'', function(err, respone, body){
+          console.log(JSON.parse(body))
+          if(err){
+            res.render("partials/nutritionPartial", {
+              nutrition: results.dataValues,
+              layout: false,
+              image: false
+            });
+          }
+          res.render("partials/nutritionPartial", {
+            nutrition: results.dataValues,
+            layout: false,
+            image: JSON.parse(body).items[0].mediumImage
+          });
         });
+
       }
     })
     .catch(err => {
