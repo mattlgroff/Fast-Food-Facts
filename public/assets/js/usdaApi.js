@@ -1,4 +1,14 @@
 $(document).ready(function(){
+  $.fn.extend({
+    animateCss: function (animationName) {
+      var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+      this.addClass('animated ' + animationName).one(animationEnd, function() {
+        $(this).removeClass('animated ' + animationName);
+      });
+      return this;
+    }
+  });
+
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -75,13 +85,12 @@ $(document).ready(function(){
     * @return {[JSON]} [Recipes Data]
     */
     requestNutritions: function(){
-      $('#recipe-container').empty();
       $.ajax({
         url: this.toQueryString(),
         type: 'GET'
       }).done(function(data){
-        if(data){
-          if(data.list.total !== 0){
+        console.log(data)
+          if(!data.errors){
             var dataArr = data.list.item;
             $('#cardsContainer').empty();
             for(var i=0; i < dataArr.length; i++){
@@ -94,7 +103,7 @@ $(document).ready(function(){
                 var content = 'UPC: ' + nameArr[1];
               }
               $('<a>')
-              .addClass('nutritionCard')
+              .addClass('nutritionCard animated fadeInUp delay-0'+i+'s')
               .attr('href', '#')
               .data('ndbno', ndbno)
               .addClass('col-lg-3')
@@ -116,7 +125,9 @@ $(document).ready(function(){
               ).appendTo('#cardsContainer');
             }
           }
-        }
+          else {
+            $('#cooking').css('display', 'none');
+          }
       });
     },
     searchByNdbno: function(ndbno, cb){
@@ -216,8 +227,10 @@ $(document).ready(function(){
         method:'POST',
         data: obj
       }).then(function(results){
-        if(results.redirect){
-          window.location.replace(results.redirect_url);
+        if(results){
+          $('.modal-content').empty();
+          $('.modal-content').append(results)
+          $('#myModal').modal('show')
         }
       });
     });
@@ -239,12 +252,6 @@ $(document).ready(function(){
   });
   $(document).ajaxStart(function(){
     $('#cooking').css('display', 'block');
-    setTimeout(function(){
-      if($('#cooking').css('display') === 'block'){
-        $('#cooking').css('display', 'none');
-        $('.alert').css('display', 'block');
-      }
-    }, 4000);
   });
   //Hide loading#cooking after ajax call is complete
 
