@@ -70,10 +70,13 @@ function addToList(){
     dataType: "json",
     success: function(response) {
       if(response.error){
-        alert("This is already in your list!");
+        console.log("This is already in your list!");
       }
       else{
-        alert("Added to your list!");
+        //alert("Added to your list!");
+        console.log("Disabled add to list button.");
+        $("#addToList").attr("disabled", "disabled");
+        $("#addToList").text("Added to your list.");
       }
     },
     error: function(err){
@@ -103,6 +106,7 @@ function isItemInList(){
     success: function(response) {
       if(response.inmylist){
         $("#addToList").attr("disabled", "disabled");
+        $("#addToList").text("Added to your list.");
         console.log("Disabled add to list button.");
       }
       else{
