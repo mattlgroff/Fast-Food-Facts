@@ -89,8 +89,8 @@ $(document).ready(function(){
         url: this.toQueryString(),
         type: 'GET'
       }).done(function(data){
-        if(data){
-          if(data.list.total !== 0){
+        console.log(data)
+          if(!data.errors){
             var dataArr = data.list.item;
             $('#cardsContainer').empty();
             for(var i=0; i < dataArr.length; i++){
@@ -125,7 +125,9 @@ $(document).ready(function(){
               ).appendTo('#cardsContainer');
             }
           }
-        }
+          else {
+            $('#cooking').css('display', 'none');
+          }
       });
     },
     searchByNdbno: function(ndbno, cb){
@@ -250,12 +252,6 @@ $(document).ready(function(){
   });
   $(document).ajaxStart(function(){
     $('#cooking').css('display', 'block');
-    setTimeout(function(){
-      if($('#cooking').css('display') === 'block'){
-        $('#cooking').css('display', 'none');
-        $('.alert').css('display', 'block');
-      }
-    }, 4000);
   });
   //Hide loading#cooking after ajax call is complete
 

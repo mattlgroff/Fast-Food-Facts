@@ -17,40 +17,40 @@
       {{#if nutrition.[USDA ID]}}<h3>USDA Verified Data</h3><p>Nutrition facts provided by the USDA.</p>
       {{else}}<h3 class="red">User Submitted Data</h3><p class="red">Nutrition facts may not be complete or accurate.</p>{{/if}}
       <section class="performance-facts">
-        <header class="performance-facts__header">
-          <h3 class="performance-facts__title"><span id="item">{{nutrition.[Name]}}</span></h3>
-          <p>ID: {{nutrition.id}}</p>
-          <p>Serving Size {{nutrition.[Serving Size]}}</p>
-        </header>
-        <table class="performance-facts__table">
-          <thead>
-            <tr>
-              <th colspan="3" class="small-info">
-                Nutrition Per Serving
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th colspan="2">
-                <b>Calories</b>
-                <span>{{nutrition.[Calories]}}</span>
-              </th>
-              <td>
-                Calories from Fat {{caloriesFromFat nutrition.[Total Fat]}}
-              </td>
-            </tr>
-            <tr class="thick-row">
-              <td colspan="3" class="small-info">
-                <b class="float_right">% Daily Value*</b>
-              </td>
-            </tr>
-            <tr>
-              <th colspan="2">
-                <b>Total Fat</b>
-                <span id="fat">{{nutrition.[Total Fat]}}</span>g
-              </th>
-              <td>
+      <header class="performance-facts__header">
+        <h3 class="performance-facts__title"><span id="item">{{nutrition.[Name]}}</span></h3>
+        <p>ID: <span id="nutritionID">{{nutrition.id}}</span></p>
+        <p>Serving Size {{nutrition.[Serving Size]}}</p>
+      </header>
+      <table class="performance-facts__table">
+        <thead>
+          <tr>
+            <th colspan="3" class="small-info">
+              Nutrition Per Serving
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th colspan="2">
+              <b>Calories</b>
+              <span>{{nutrition.[Calories]}}</span>
+            </th>
+            <td>
+              Calories from Fat {{caloriesFromFat nutrition.[Total Fat]}}
+            </td>
+          </tr>
+          <tr class="thick-row">
+            <td colspan="3" class="small-info">
+              <b class="float_right">% Daily Value*</b>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="2">
+              <b>Total Fat</b>
+              <span id="fat">{{nutrition.[Total Fat]}}</span>g
+            </th>
+            <td>
                 <b>{{percentDailyTotalFat nutrition.[Total Fat]}}%</b>
               </td>
             </tr>

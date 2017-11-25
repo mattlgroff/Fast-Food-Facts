@@ -6,6 +6,21 @@ module.exports = app => {
   //Public Folder
   app.use(express.static(path.join(__dirname, './../public')));
 
+  //Home Page
+  app.get("/", (req, res) => {
+    res.render("index", {user:req.user});
+  });
+
+  //Home Page
+  app.get("/index", (req, res) => {
+    res.render("index", {user:req.user});
+  });
+
+  //Home Page
+  app.get("/index.html", (req, res) => {
+    res.render("index", {user:req.user});
+  });
+
   //Select One Nutrition from ID
   app.get("/nutrition/:id", (req, res) => {
     htmlController.selectOne(req, res, req.params.id);
@@ -21,10 +36,6 @@ module.exports = app => {
     res.render("createFood", {user:req.user});
   });
 
-  //View MyList
-  app.get("/mylist", (req, res) => {
-    htmlController.findAll(req, res);
-  });
 
   //Post to create a new food
   app.post("/create", (req, res) => {
@@ -35,4 +46,6 @@ module.exports = app => {
   app.post("/nutrition", (req, res) => {
     htmlController.addToList(req, res);
   });
+
+
 }

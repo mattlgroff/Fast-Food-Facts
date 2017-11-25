@@ -47,12 +47,13 @@ $(document).ready(function(){
 });
 
 function addToList(){
-  let nutrition_id = parseInt( $("#nutrition_id").text() );
-  let user_id = parseInt( $("#user_id").text() );
+  let nutrition_id = parseInt($("#nutritionID").text());
+  let user_id = parseInt($("#user_id").text());
   let nutrition_name = $("#item").text();
 
-  console.log("name:" + nutrition_name);
-  console.log("ID: " + nutrition_id);
+  console.log("Name:" + nutrition_name);
+  console.log("Nutrition ID: " + nutrition_id);
+  console.log("User ID: " + user_id);
 
   let obj = {
     nutrition_id: nutrition_id,
@@ -60,13 +61,21 @@ function addToList(){
     nutrition_name: nutrition_name
   }
 
+  let url = window.location.href;
+  let length = $("#nutritionID").text().length;
+  url = url.slice(0, (-1 * length) );
+
   $.ajax({
     type: "POST",
-    url: "/nutrition",
+    url: url,
     data: obj,
     dataType: "json",
     success: function(response) {
+      console.log(response);
       alert("Added to your list!");
+    },
+    error: function(err){
+      console.log(err);
     }
   });
 }
