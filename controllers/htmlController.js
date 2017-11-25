@@ -122,27 +122,69 @@ module.exports = {
         res.render(
           "myList",
           {myList: mapped,
-            user: req.user
-          });
-        }
-      }).catch(err => {
-        error(req, res, err);
-      });
-    },
-    addToList: function(req, res){
-      db.UserNutrition.create({
-        user_id: req.body.user_id,
-        nutrition_id: req.body.nutrition_id,
-        nutrition_name: req.body.nutrition_name
-      })
-      .then(results => {
-        res.json(results.dataValues);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-    }
-  };
+          user: req.user 
+        });
+      }
+    }).catch(err => {
+      error(req, res, err);
+    });
+  },
+  addToList: function(req, res){
+    //Check if the myList item exists already.
+    db.UserNutrition.findOne({
+      where: {
+        user_id: req.user.id,
+        nutrition_id: req.body.nutrition_id
+      }
+    })
+    .then(results => {
+      //The item in myList exists already.
+      if(results){
+        console.log("This is already in their list.");
+        res.json({error:"Already in your list!"});
+      }
+      //The item in myList DOES NOT exist. Create it.
+      else{
+        db.UserNutrition.create({
+          user_id: req.body.user_id,
+          nutrition_id: req.body.nutrition_id,
+          nutrition_name: req.body.nutrition_name
+        })
+        .then(results => {
+          res.json(results.dataValues);
+        })
+        .catch(err => {
+          console.error(err);
+        });
+      }
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  },
+  inMyList: function(req, res){
+    //Check if the myList item exists already.
+    db.UserNutrition.findOne({
+      where: {
+        user_id: req.user.id,
+        nutrition_id: req.body.nutrition_id
+      }
+    })
+    .then(results => {
+      //The item in myList exists already.
+      if(results){
+        res.json({inmylist:true});
+      }
+      //The item in myList DOES NOT exist. 
+      else{
+        res.json({inmylist:false})
+      }
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  }
+};
 
   function error(req, res, err){
     console.error(err);
