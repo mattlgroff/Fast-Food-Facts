@@ -41,7 +41,7 @@ require("./routes/htmlRoutes.js")(app);
 require('./routes/authRoutes.js')(app, passport);
 
 // DB Sync - force: false means it will NOT drop the tables if they exist
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => {
     console.log("App listening on PORT " + PORT);
   });

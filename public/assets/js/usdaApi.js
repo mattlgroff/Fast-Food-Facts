@@ -126,7 +126,7 @@ $(document).ready(function(){
             }
           }
           else {
-            $('#cooking').css('display', 'none');
+            $('.alert').css('display', 'block');
           }
       });
     },

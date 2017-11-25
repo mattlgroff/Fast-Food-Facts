@@ -39,9 +39,8 @@ module.exports = {
         if(results){
           console.log("ID of found result: " + results.dataValues.id);
           request('http://api.walmartlabs.com/v1/items?apiKey=grfg2f6ffkqhzyy92raeyfyn&upc='+results.dataValues['USDA ID']+'', function(err, respone, body){
-            console.log(body)
-
-            if(!body.errors){
+            var parsedBody = JSON.parse(body);
+            if(parsedBody.errors){
               res.render("partials/nutritionPartial", {
                 nutrition: results.dataValues,
                 layout: false,
@@ -52,7 +51,7 @@ module.exports = {
               res.render("partials/nutritionPartial", {
                 nutrition: results.dataValues,
                 layout: false,
-                image: JSON.parse(body).items[0].mediumImage
+                image: parsedBody.items[0].largeImage
               });
             }
           });
@@ -63,8 +62,8 @@ module.exports = {
           .then(results => {
             if(results) {
               request('http://api.walmartlabs.com/v1/items?apiKey=grfg2f6ffkqhzyy92raeyfyn&upc='+results.dataValues['USDA ID']+'', function(err, respone, body){
-                console.log(body)
-                if(!body.errors){
+                var parsedBody = JSON.parse(body);
+                if(parsedBody.errors){
                   res.render("partials/nutritionPartial", {
                     nutrition: results.dataValues,
                     layout: false,
@@ -75,7 +74,7 @@ module.exports = {
                   res.render("partials/nutritionPartial", {
                     nutrition: results.dataValues,
                     layout: false,
-                    image: JSON.parse(body).items[0].mediumImage
+                    image: parsedBody.items[0].largeImage
                   });
                 }
               });
@@ -122,7 +121,7 @@ module.exports = {
         res.render(
           "myList",
           {myList: mapped,
-          user: req.user 
+          user: req.user
         });
       }
     }).catch(err => {
@@ -175,7 +174,7 @@ module.exports = {
       if(results){
         res.json({inmylist:true});
       }
-      //The item in myList DOES NOT exist. 
+      //The item in myList DOES NOT exist.
       else{
         res.json({inmylist:false})
       }
