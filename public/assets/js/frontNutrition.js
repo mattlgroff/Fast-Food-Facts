@@ -63,13 +63,9 @@ function addToList(){
     nutrition_name: nutrition_name
   }
 
-  let url = window.location.href;
-  let length = $("#nutritionID").text().length;
-  url = url.slice(0, (-1 * length) );
-
   $.ajax({
     type: "POST",
-    url: url,
+    url: "/nutrition",
     data: obj,
     dataType: "json",
     success: function(response) {
@@ -97,10 +93,7 @@ function isItemInList(){
     nutrition_name: nutrition_name
   }
 
-  let url = window.location.href;
-  let length = $("#nutritionID").text().length;
-  url = url.slice(0, (-1 * length) );
-  url = url + "inmylist";
+  let url = "/nutrition/inmylist";
 
   $.ajax({
     type: "POST",
