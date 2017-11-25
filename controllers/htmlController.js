@@ -34,8 +34,14 @@ module.exports = {
         console.log("Found a USDA ID, does it have any value?");
 
         //A USDA Exists and is in the database. Respond with redirect URL.
-        if(results.dataValues.id){
+        if(results){
           console.log("ID of found result: " + results.dataValues.id);
+
+          let baseUrl = "http://fastfoodfacts.herokuapp.com/nutrition/";
+
+          if(process.env.mysql_pw){
+            baseUrl = "http://localhost:8080/nutrition/";
+          }
 
           res.json({
             "redirect":true,
@@ -46,7 +52,7 @@ module.exports = {
         else{
           db.Nutrition.create(req.body)
           .then(results => {
-            let baseUrl = "http://electricboogaloo.herokuapp.com/nutrition/";
+            let baseUrl = "http://fastfoodfacts.herokuapp.com/nutrition/";
 
             if(process.env.mysql_pw){
               baseUrl = "http://localhost:8080/nutrition/";
