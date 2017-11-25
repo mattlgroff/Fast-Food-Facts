@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  isLoggedIn();
+
   $("#addToList").on("click", function(){
     addToList();
   });
@@ -71,11 +73,64 @@ function addToList(){
     data: obj,
     dataType: "json",
     success: function(response) {
-      console.log(response);
-      alert("Added to your list!");
+      if(response.error){
+        alert("This is already in your list!");
+      }
+      else{
+        alert("Added to your list!");
+      }
     },
     error: function(err){
       console.log(err);
     }
   });
+}
+
+function isItemInList(){
+  let nutrition_id = parseInt($("#nutritionID").text());
+  let user_id = parseInt($("#user_id").text());
+  let nutrition_name = $("#item").text();
+
+  let obj = {
+    nutrition_id: nutrition_id,
+    user_id: user_id,
+    nutrition_name: nutrition_name
+  }
+
+  let url = window.location.href;
+  let length = $("#nutritionID").text().length;
+  url = url.slice(0, (-1 * length) );
+  url = url + "inmylist";
+
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: obj,
+    dataType: "json",
+    success: function(response) {
+      if(response.inmylist){
+        $("#addToList").attr("disabled", "disabled");
+        console.log("Disabled add to list button.");
+      }
+      else{
+        //Do Nothing! You can add to your list.
+      }
+    },
+    error: function(err){
+      console.log(err);
+    }
+  });
+
+}
+
+function isLoggedIn(){
+  console.log("USER ID: " + $("#user_id").text());
+  //If user is not logged in.
+  if($("#user_id").text() === ""){
+    $("#addToList").attr("disabled", "disabled");
+  }
+  //Logged in, let's see if its in their list.
+  else{
+     isItemInList();
+  }
 }

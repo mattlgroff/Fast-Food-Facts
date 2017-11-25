@@ -47,5 +47,10 @@ module.exports = app => {
     htmlController.addToList(req, res);
   });
 
+  //Post to create a new food
+  app.post("/nutrition/inmylist", (req, res) => {
+    htmlController.inMyList(req, res);
+  });
+
 
 }
