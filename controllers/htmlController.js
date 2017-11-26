@@ -41,8 +41,7 @@ module.exports = {
       else{
         res.render("nutrition", {
           nutrition: results.dataValues,
-          user: req.user,
-          image: parsedBody.items[0].largeImage
+          user: req.user
         });
       }
     })
@@ -232,8 +231,23 @@ module.exports = {
       .catch(err => {
         console.error(err);
       });
+    },
+    deleteUserNutrition: function(req, res){
+      db.UserNutrition.destroy({
+        where: {
+          user_id: req.body.user_id,
+          nutrition_id: req.body.nutrition_id
+        }
+      })
+      .then(results => {
+        res.json(results);
+      })
+      .catch(err => {
+        console.error(err);
+        res.json({"Error":err});
+      });
     }
-  };
+  }
 
   function error(req, res, err){
     console.error(err);

@@ -57,5 +57,10 @@ module.exports = app => {
     htmlController.inMyList(req, res);
   });
 
+  //Delete route for mylist
+  app.delete("/mylist", (req, res) => {
+    htmlController.deleteUserNutrition(req, res);
+  });
+
 
 }

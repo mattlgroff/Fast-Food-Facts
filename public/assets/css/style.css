@@ -1,3 +1,11 @@
+.removeBtn {
+  margin-left: 20px;
+}
+
+.mylistTitle {
+  font-size: 1.3rem
+}
+
 .image {
   width: 200px;
   float: left;
@@ -130,6 +138,16 @@ th,td {
   border: 1px solid grey;
   border-radius: 10px;
 }
+
+.mylistcard {
+  width: 33.33%;
+  height: 100px;
+  margin: 10px 0px;
+  padding: 10px;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+
 div.alert {
   display: none;
 }
