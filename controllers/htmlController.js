@@ -8,16 +8,34 @@ module.exports = {
         id: id
       }
     })
-    .then(result => {
-      if(result === undefined || result === null ){
-        error(req, res, result);
+    .then(results => {
+      if(results.dataValues['USDA ID']) {
+        var walmartApiKey = process.env.walmartApiKey;
+        request('http://api.walmartlabs.com/v1/items?apiKey='+walmartApiKey+'&upc='+results.dataValues['USDA ID']+'', function(err, respone, body){
+          var parsedBody = JSON.parse(body);
+          if(parsedBody.errors){
+            res.render("nutrition", {
+              nutrition: results.dataValues,
+              user: req.user
+            });
+          }
+          else {
+            res.render("nutrition", {
+              nutrition: results.dataValues,
+              user: req.user,
+              image: parsedBody.items[0].largeImage
+            });
+          }
+
+        })
       }
       else {
-        res.render("nutrition",{
-          nutrition: result.dataValues,
+        res.render("nutrition", {
+          nutrition: results.dataValues,
           user: req.user
         });
       }
+
     })
     .catch(err => {
       error(req, res, err);
@@ -38,20 +56,22 @@ module.exports = {
         //A USDA Exists and is in the database. Respond with redirect URL.
         if(results){
           console.log("ID of found result: " + results.dataValues.id);
-          request('http://api.walmartlabs.com/v1/items?apiKey=grfg2f6ffkqhzyy92raeyfyn&upc='+results.dataValues['USDA ID']+'', function(err, respone, body){
+          var walmartApiKey = process.env.walmartApiKey;
+          request('http://api.walmartlabs.com/v1/items?apiKey='+walmartApiKey+'&upc='+results.dataValues['USDA ID']+'', function(err, respone, body){
             var parsedBody = JSON.parse(body);
             if(parsedBody.errors){
               res.render("partials/nutritionPartial", {
                 nutrition: results.dataValues,
                 layout: false,
-                image: false
+                user: req.user
               });
             }
             else {
               res.render("partials/nutritionPartial", {
                 nutrition: results.dataValues,
                 layout: false,
-                image: parsedBody.items[0].largeImage
+                image: parsedBody.items[0].largeImage,
+                user: req.user
               });
             }
           });
@@ -61,20 +81,22 @@ module.exports = {
           db.Nutrition.create(req.body)
           .then(results => {
             if(results) {
-              request('http://api.walmartlabs.com/v1/items?apiKey=grfg2f6ffkqhzyy92raeyfyn&upc='+results.dataValues['USDA ID']+'', function(err, respone, body){
+              var walmartApiKey = process.env.walmartApiKey;
+              request('http://api.walmartlabs.com/v1/items?apiKey='+walmartApiKey+'&upc='+results.dataValues['USDA ID']+'', function(err, respone, body){
                 var parsedBody = JSON.parse(body);
                 if(parsedBody.errors){
                   res.render("partials/nutritionPartial", {
                     nutrition: results.dataValues,
                     layout: false,
-                    image: false
+                    user: req.user
                   });
                 }
                 else {
                   res.render("partials/nutritionPartial", {
                     nutrition: results.dataValues,
                     layout: false,
-                    image: parsedBody.items[0].largeImage
+                    image: parsedBody.items[0].largeImage,
+                    user: req.user
                   });
                 }
               });
@@ -121,69 +143,69 @@ module.exports = {
         res.render(
           "myList",
           {myList: mapped,
-          user: req.user
-        });
-      }
-    }).catch(err => {
-      error(req, res, err);
-    });
-  },
-  addToList: function(req, res){
-    //Check if the myList item exists already.
-    db.UserNutrition.findOne({
-      where: {
-        user_id: req.user.id,
-        nutrition_id: req.body.nutrition_id
-      }
-    })
-    .then(results => {
-      //The item in myList exists already.
-      if(results){
-        console.log("This is already in their list.");
-        res.json({error:"Already in your list!"});
-      }
-      //The item in myList DOES NOT exist. Create it.
-      else{
-        db.UserNutrition.create({
-          user_id: req.body.user_id,
-          nutrition_id: req.body.nutrition_id,
-          nutrition_name: req.body.nutrition_name
-        })
-        .then(results => {
-          res.json(results.dataValues);
-        })
-        .catch(err => {
-          console.error(err);
-        });
-      }
-    })
-    .catch(err => {
-      console.error(err);
-    });
-  },
-  inMyList: function(req, res){
-    //Check if the myList item exists already.
-    db.UserNutrition.findOne({
-      where: {
-        user_id: req.user.id,
-        nutrition_id: req.body.nutrition_id
-      }
-    })
-    .then(results => {
-      //The item in myList exists already.
-      if(results){
-        res.json({inmylist:true});
-      }
-      //The item in myList DOES NOT exist.
-      else{
-        res.json({inmylist:false})
-      }
-    })
-    .catch(err => {
-      console.error(err);
-    });
-  }
-};
+            user: req.user
+          });
+        }
+      }).catch(err => {
+        error(req, res, err);
+      });
+    },
+    addToList: function(req, res){
+      //Check if the myList item exists already.
+      db.UserNutrition.findOne({
+        where: {
+          user_id: req.user.id,
+          nutrition_id: req.body.nutrition_id
+        }
+      })
+      .then(results => {
+        //The item in myList exists already.
+        if(results){
+          console.log("This is already in their list.");
+          res.json({error:"Already in your list!"});
+        }
+        //The item in myList DOES NOT exist. Create it.
+        else{
+          db.UserNutrition.create({
+            user_id: req.body.user_id,
+            nutrition_id: req.body.nutrition_id,
+            nutrition_name: req.body.nutrition_name
+          })
+          .then(results => {
+            res.json(results.dataValues);
+          })
+          .catch(err => {
+            console.error(err);
+          });
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    },
+    inMyList: function(req, res){
+      //Check if the myList item exists already.
+      db.UserNutrition.findOne({
+        where: {
+          user_id: req.user.id,
+          nutrition_id: req.body.nutrition_id
+        }
+      })
+      .then(results => {
+        //The item in myList exists already.
+        if(results){
+          res.json({inmylist:true});
+        }
+        //The item in myList DOES NOT exist.
+        else{
+          res.json({inmylist:false})
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
+    }
+  };
 
   function error(req, res, err){
     console.error(err);
