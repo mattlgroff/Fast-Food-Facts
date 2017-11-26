@@ -1,6 +1,13 @@
 <!-- Javascript -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="../../assets/js/frontNutrition.js"></script>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="container main">
   <div class="row">
@@ -292,10 +299,24 @@
         </p>
 
       </section>
-      <div id="sharing" class="col-lg-6">
+      <div id="listManage">
+
         <button id="addToList" class="btn btn-primary">Add {{nutrition.[Name]}} to My List</button>
-        <a class="twitter-share-button btn btn-primary" target="_blank" href="https://twitter.com/intent/tweet?text=Check%20out%20my%20Nutrition%20Facts%20for%20{{nutrition.[Name]}}&url=http://fastfoodfacts.herokuapp.com/nutrition/{{nutrition.id}}&hashtags=FastFoodFacts">Tweet</a>
+
+        {{#if user.email}}
+        <a class="btn btn-primary" href="/mylist">My List</a>
+        {{/if}}
+
+        <a class="btn btn-primary facebook-share-button" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffastfoodfacts.herokuapp.com%2Fnutrition%2F{{nutrition.id}}&amp;src=sdkpreparse">
+          <i class="fa fa-inverse fa-lg fa-facebook"></i>
+        </a>
+
+        <a class="btn btn-primary twitter-share-button" target="_blank" href="https://twitter.com/intent/tweet?text=Check%20out%20my%20Nutrition%20Facts%20for%20{{nutrition.[Name]}}&url=http://fastfoodfacts.herokuapp.com/nutrition/{{nutrition.id}}&hashtags=FastFoodFacts">
+          <i class="fa fa-inverse fa-lg fa-twitter"></i>
+        </a>
+
       </div>
+
     </div> <!-- End Second Col -->
   </div> <!-- End Row-->
 </div><!-- End Container Main -->

@@ -12,30 +12,39 @@ module.exports = {
       if(results.dataValues['USDA ID']) {
         var walmartApiKey = process.env.walmartApiKey;
         request('http://api.walmartlabs.com/v1/items?apiKey='+walmartApiKey+'&upc='+results.dataValues['USDA ID']+'', function(err, respone, body){
-          var parsedBody = JSON.parse(body);
-          if(parsedBody.errors){
-            res.render("nutrition", {
+          if(body === undefined || body.toString().includes('error')) {
+            res.render("partials/nutritionPartial", {
               nutrition: results.dataValues,
+              layout: false,
               user: req.user
             });
           }
-          else {
-            res.render("nutrition", {
-              nutrition: results.dataValues,
-              user: req.user,
-              image: parsedBody.items[0].largeImage
-            });
-          }
+          else{
+            var parsedBody = JSON.parse(body);
 
-        })
-      }
-      else {
-        res.render("nutrition", {
-          nutrition: results.dataValues,
-          user: req.user
+            if(parsedBody.errors){
+              res.render("nutrition", {
+                nutrition: results.dataValues,
+                user: req.user
+              });
+            }
+            else {
+              res.render("nutrition", {
+                nutrition: results.dataValues,
+                user: req.user,
+                image: parsedBody.items[0].largeImage
+              });
+            }
+          }
         });
       }
-
+      else{
+        res.render("nutrition", {
+          nutrition: results.dataValues,
+          user: req.user,
+          image: parsedBody.items[0].largeImage
+        });
+      }
     })
     .catch(err => {
       error(req, res, err);
@@ -58,21 +67,31 @@ module.exports = {
           console.log("ID of found result: " + results.dataValues.id);
           var walmartApiKey = process.env.walmartApiKey;
           request('http://api.walmartlabs.com/v1/items?apiKey='+walmartApiKey+'&upc='+results.dataValues['USDA ID']+'', function(err, respone, body){
-            var parsedBody = JSON.parse(body);
-            if(parsedBody.errors){
+            if(body === undefined || body.toString().includes('error')) {
               res.render("partials/nutritionPartial", {
                 nutrition: results.dataValues,
                 layout: false,
                 user: req.user
               });
             }
-            else {
-              res.render("partials/nutritionPartial", {
-                nutrition: results.dataValues,
-                layout: false,
-                image: parsedBody.items[0].largeImage,
-                user: req.user
-              });
+            else{
+
+              var parsedBody = JSON.parse(body);
+              if(parsedBody.errors){
+                res.render("partials/nutritionPartial", {
+                  nutrition: results.dataValues,
+                  layout: false,
+                  user: req.user
+                });
+              }
+              else {
+                res.render("partials/nutritionPartial", {
+                  nutrition: results.dataValues,
+                  layout: false,
+                  image: parsedBody.items[0].largeImage,
+                  user: req.user
+                });
+              }
             }
           });
         }
@@ -83,21 +102,30 @@ module.exports = {
             if(results) {
               var walmartApiKey = process.env.walmartApiKey;
               request('http://api.walmartlabs.com/v1/items?apiKey='+walmartApiKey+'&upc='+results.dataValues['USDA ID']+'', function(err, respone, body){
-                var parsedBody = JSON.parse(body);
-                if(parsedBody.errors){
+                if(body === undefined || body.toString().includes('error')) {
                   res.render("partials/nutritionPartial", {
                     nutrition: results.dataValues,
                     layout: false,
                     user: req.user
                   });
                 }
-                else {
-                  res.render("partials/nutritionPartial", {
-                    nutrition: results.dataValues,
-                    layout: false,
-                    image: parsedBody.items[0].largeImage,
-                    user: req.user
-                  });
+                else{
+                  var parsedBody = JSON.parse(body);
+                  if(parsedBody.errors){
+                    res.render("partials/nutritionPartial", {
+                      nutrition: results.dataValues,
+                      layout: false,
+                      user: req.user
+                    });
+                  }
+                  else {
+                    res.render("partials/nutritionPartial", {
+                      nutrition: results.dataValues,
+                      layout: false,
+                      image: parsedBody.items[0].largeImage,
+                      user: req.user
+                    });
+                  }
                 }
               });
             }
@@ -145,12 +173,12 @@ module.exports = {
           {myList: mapped,
             user: req.user
           });
-        }
-      }).catch(err => {
-        error(req, res, err);
-      });
-    },
-    addToList: function(req, res){
+      }
+    }).catch(err => {
+      error(req, res, err);
+    });
+  },
+  addToList: function(req, res){
       //Check if the myList item exists already.
       db.UserNutrition.findOne({
         where: {
