@@ -1,3 +1,20 @@
 <div class="container main">
-  <h3>Insert Home Page Here</h3>
+  <div class="jumbotron">
+    <h1 class="display-3">Fast Food Facts</h1>
+    <p class="lead">Welcome to the best Nutrition Facts creating, saving, and sharing hub!</p>
+    <hr class="my-4">
+    {{#unless user.email}}
+    <p>To create and save Nutrition Facts you must create an account or sign in to an existing account.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="/signin" role="button">Sign In or Sign Up</a>
+    </p>
+    {{else}}
+    <p class="lead">
+      Welcome back!<br>
+      <a class="btn btn-primary btn-lg" href="/search" role="button">Search</a>
+      <a class="btn btn-primary btn-lg" href="/create" role="button">Create</a>
+      <a class="btn btn-primary btn-lg" href="/mylist" role="button">My List</a>
+    </p>
+    {{/unless}}
+  </div>
 </div>

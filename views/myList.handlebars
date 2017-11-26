@@ -1,16 +1,30 @@
-{{#if user.email}}
-
+<script type="text/javascript" src="../../assets/js/myList.js"></script>
 
 <div class="container main">
-  <div id="foodRows" class="row">
+  <h1 class="text-center">My List</h1>
+  <div class="row" id="cardsContainer">
     {{#each myList}}
-      <p>Food: {{nutrition_name}}</p>
-      <br>
+        <a class="nutritionCard animated fadeInUp delay-00s" href="/nutrition/{{nutrition_id}}">
+        <div class="mylistcard col-12 col-sm-12 col-md-6 col-lg-4">
+          <div class="card-block">
+            <h4 class="mylistTitle">{{nutrition_name}}</h4>
+
+            <p class="card-text">
+
+              <a class="card-text btn btn-primary facebook-share-button" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffastfoodfacts.herokuapp.com%2Fnutrition%2F{{nutrition_id}}&amp;src=sdkpreparse">
+                <i class="fa fa-inverse fa-md fa-facebook"></i>
+              </a>
+
+              <a class="card-text btn btn-primary twitter-share-button" target="_blank" href="https://twitter.com/intent/tweet?text=Check%20out%20my%20Nutrition%20Facts%20for%20{{nutrition_name}}&url=http://fastfoodfacts.herokuapp.com/nutrition/{{nutrition_id}}&hashtags=FastFoodFacts">
+              <i class="fa fa-inverse fa-md fa-twitter"></i>
+              </a>
+
+              <button nutrition_id="{{nutrition_id}}" class="btn btn-primary removeBtn">Remove</button>
+
+            </p>
+          </div>
+        </div>
+      </a>
     {{/each}}
   </div>
 </div>
-
-
-{{else}}
-<h1>Please <a href="/signin">login</a>.</h1>
-{{/if}}
