@@ -62,5 +62,9 @@ module.exports = app => {
     htmlController.deleteUserNutrition(req, res);
   });
 
+  //Catch Route
+  app.get('*', function(req, res){
+    res.render("error", {user: req.user});
+  });
 
 }
