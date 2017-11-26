@@ -3,6 +3,7 @@
   float: left;
   margin: 20px;
 }
+
 body {
   font-size: small;
   line-height: 1.4;
@@ -147,6 +148,9 @@ div.alert {
 }
 .twitter-share-button {
   background-color: rgb(74,180,245);
+}
+.facebook-share-button {
+  background-color: #4468B0;
 }
 .btn-primary {
   border: none;
