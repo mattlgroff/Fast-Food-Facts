@@ -8,22 +8,19 @@ module.exports = function(app, passport) {
 
     //SignIn Route POST
     app.post('/signin', passport.authenticate('local-signin', {
-            successRedirect: '/',
-
-            failureRedirect: '/signin'
-        }
-
+      successRedirect: '/',
+      failureRedirect: '/signin',
+      failureFlash: true 
+      }
     ));
 
     //Signup Route POST
     app.post('/signup', passport.authenticate('local-signup', {
             successRedirect: '/',
-            failureRedirect: '/signin'
+            failureRedirect: '/signin',
+            failureFlash: true
         }
     ));
-
-    //Dashboard Route (Redirects to Homepage)
-    app.get('/dashboard', isLoggedIn, authController.dashboard);
     
     //Logout
     app.get('/logout', authController.logout);
