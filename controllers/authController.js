@@ -1,16 +1,32 @@
 module.exports.signin = function(req, res) {
-    res.render('signin', {user:req.user});
+  let user = req.flash('user');
+  let password = req.flash('password');
+  let message = req.flash('message');
+
+  res.render('signin', {
+    user:req.user, 
+    message: {
+      user: user,
+      password: password,
+      message: message
+    }
+  });
 
 }
 
 module.exports.signup = function(req, res) {
-    res.render('signin', {user:req.user});
+  let user = req.flash('user');
+  let password = req.flash('password');
+  let message = req.flash('message');
 
-}
-
-module.exports.dashboard = function(req, res) {
-
-    res.render('dashboard', {user:req.user});
+  res.render('signin', {
+    user:req.user, 
+    message: {
+      user: user,
+      password: password,
+      message: message
+    }
+  });
 
 }
 

@@ -16,13 +16,15 @@ body {
   font-size: small;
   line-height: 1.4;
   overflow: auto;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('../images/background.jpeg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/background.jpeg');
   background-position: top;
   background-size: cover;
 }
+
 p {
   margin: 0;
 }
+
 * a:hover {
   color: rgba(233, 105, 103, 0.8);
   text-shadow: 1px 1px 0px #000000;
@@ -32,47 +34,69 @@ p {
   border-color: transparent;
   background-color: transparent;
   color: white;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
+
 .jumbotron {
   border-color: transparent;
   background-color: transparent;
   color: white;
 }
-.navbar-brand, .nav-link {
+
+.navbar-brand,
+.nav-link,
+h3,
+h1,
+h2,
+label,
+li,
+help-block {
   color: white;
   text-shadow: 2px 2px 1px black;
 }
+
+.help-block {
+  color: white;
+}
+
 .navbar-brand {
   font-family: 'Luckiest Guy';
   font-size: 1.4em;
   font-weight: normal;
 }
+
 .shadow {
   text-shadow: 2px 2px 1px black;
 }
+
 .btn-trans {
   background-color: rgba(0, 0, 0, 0.5);
   margin-top: 10px;
 }
-#searchBtn.btn, #searchInput {
+
+#searchBtn.btn,
+#searchInput {
   background-color: rgba(0, 0, 0, 0.5);
   color: #dddddd;
   font-weight: bold;
   border: 1px solid rgba(255, 255, 255, 0.3);
   margin-bottom: 40px;
 }
+
 #searchBtn.btn {
   border-left: none;
 }
+
 .searchBar {
   position: relative;
   height: 300px;
 }
+
 .input-group {
   top: 120px;
 }
+
 .red {
   color: red;
 }
@@ -91,11 +115,13 @@ p {
     border-collapse: collapse;
   }
 }
+
 .performance-facts__title {
   font-weight: bold;
   font-size: 1rem;
   margin: 0 0 0.25rem 0;
 }
+
 .performance-facts__header {
   border-bottom: 10px solid black;
   padding: 0 0 0.25rem 0;
@@ -104,14 +130,17 @@ p {
     margin: 0;
   }
 }
+
 .performance-facts__table {
   width: 100%;
   thead tr {
-    th, td {
+    th,
+    td {
       border: 0;
     }
   }
-  th, td {
+  th,
+  td {
     font-weight: normal;
     text-align: left;
     padding: 0.25rem 0;
@@ -128,11 +157,13 @@ p {
     border-top: 0;
   }
   .thick-row {
-    th, td {
+    th,
+    td {
       border-top-width: 5px;
     }
   }
 }
+
 .small-info {
   font-size: 0.5rem;
 }
@@ -151,7 +182,8 @@ p {
       text-align: left;
     }
   }
-  th, td {
+  th,
+  td {
     border: 0;
     padding: 0;
   }
@@ -171,13 +203,17 @@ p {
     }
   }
 }
+
 .thick-end {
   border-bottom: 10px solid black;
 }
+
 .thin-end {
   border-bottom: 1px solid black;
 }
-th,td {
+
+th,
+td {
   font-size: 0.6rem;
 }
 
@@ -215,33 +251,42 @@ div.alert {
   max-width: 100%;
   margin: 30px auto;
 }
+
 .twitter-share-button {
-  background-color: rgb(74,180,245);
+  background-color: rgb(74, 180, 245);
 }
+
 .facebook-share-button {
   background-color: #4468B0;
 }
+
 .btn-primary {
   border: none;
 }
 
+
 /*animation timers*/
+
 .delay-02s {
   animation-delay: 0.2s;
   -webkit-animation-delay: 0.2s;
 }
+
 .delay-03s {
   animation-delay: 0.3s;
   -webkit-animation-delay: 0.3s;
 }
+
 .delay-04s {
   animation-delay: 0.4s;
   -webkit-animation-delay: 0.4s;
 }
+
 .delay-05s {
   animation-delay: 0.5s;
   -webkit-animation-delay: 0.5s;
 }
+
 .delay-06s {
   animation-delay: 0.6s;
   -webkit-animation-delay: 0.6s;
@@ -251,6 +296,7 @@ div.alert {
   animation-delay: 0.7s;
   -webkit-animation-delay: 0.7s;
 }
+
 .delay-08s {
   animation-delay: 0.8s;
   -webkit-animation-delay: 0.8s;
@@ -260,49 +306,63 @@ div.alert {
   animation-delay: 0.9s;
   -webkit-animation-delay: 0.9s;
 }
+
 .delay-010s {
   animation-delay: 1s;
   -webkit-animation-delay: 1s;
 }
+
 .delay-011s {
   animation-delay: 1.2s;
   -webkit-animation-delay: 1.2s;
 }
+
 .delay-012s {
   animation-delay: 1.3s;
   -webkit-animation-delay: 1.3s;
 }
+
 .delay-013s {
   animation-delay: 1.4s;
   -webkit-animation-delay: 1.4s;
 }
+
 .delay-014s {
   animation-delay: 1.5s;
   -webkit-animation-delay: 1.5s;
 }
+
 .delay-015s {
   animation-delay: 1.6s;
   -webkit-animation-delay: 1.6s;
 }
+
 .delay-016s {
   animation-delay: 1.7s;
   -webkit-animation-delay: 1.7s;
 }
+
 .delay-017s {
   animation-delay: 1.8s;
   -webkit-animation-delay: 1.8s;
 }
+
 .delay-018s {
   animation-delay: 1.9s;
   -webkit-animation-delay: 1.9s;
 }
+
 .delay-019s {
   animation-delay: 1.9s;
   -webkit-animation-delay: 1.9s;
 }
+
 .delay-020s {
   animation-delay: 2s;
   -webkit-animation-delay: 2s;
+}
+.form-control {
+  max-width: 100%;
 }
 @media (min-width: 425px) {
   #piechart {
