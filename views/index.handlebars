@@ -3,13 +3,16 @@
     <h1 class="display-3">Fast Food Facts</h1>
     <p class="lead">Welcome to the best Nutrition Facts creating, saving, and sharing hub!</p>
     {{#unless user.email}}
+    <br><br>
     <p>To create and save Nutrition Facts you must create an account or sign in to an existing account.</p>
+    <br>
     <p class="lead">
-      <a class="btn btn-trans btn-lg" href="/signin" role="button">Sign In or Sign Up</a>
+      <a class="btn btn-trans btn-lg" href="/signin" role="button">Sign In / Sign Up</a>
     </p>
     {{else}}
+    <br>
     <p class="lead">
-      Welcome back!<br>
+      Welcome back!<br><br>
       <a class="btn btn-primary btn-lg" href="/search" role="button">Search</a>
       <a class="btn btn-primary btn-lg" href="/create" role="button">Create</a>
       <a class="btn btn-primary btn-lg" href="/mylist" role="button">My List</a>
