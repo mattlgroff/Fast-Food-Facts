@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Fast Food Facts</title>
+<head>
+  <title>Fast Food Facts</title>
 
-    <!-- Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap.min.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" src="../../assets/js/wow.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap.min.css">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" src="../../assets/js/wow.js"></script>
 
-    <!-- Font Awesome -->
-    <link href="../../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Font Awesome -->
+  <link href="../../assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <meta charset="utf-8">
-    <!-- Set the viewport so this responsive site displays correctly on mobile devices -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <!-- Set the viewport so this responsive site displays correctly on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Favicon -->
-    <link href="../../assets/favicon.ico" rel="icon" type="image/x-icon" />
+  <!-- Favicon -->
+  <link href="../../assets/favicon.ico" rel="icon" type="image/x-icon" />
 
-    <!-- My CSS -->
-    <link rel="stylesheet" type="text/css" href="../../assets/css/animate.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/css/loader.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+  <!-- My CSS -->
+  <link rel="stylesheet" type="text/css" href="../../assets/css/animate.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/loader.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
 
-  </head>
+</head>
 
-  <body>
-    <nav class="navbar navbar-expand-md" id="mainNav">
-      <div class="container collapse navbar-collapse">
-        <a class="navbar-brand" href="/index">Fast Food Facts</a>
-        <ul class="navbar-nav">
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="/index">Fast Food Facts</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav ml-auto">
           {{#if user.email}}
           <li class="nav item">
-            <span class="nav-item nav-link">Logged in as: {{user.email}}</span>
+            <span class="nav-item nav-link"><i class="fa fa-user fa-lg" aria-hidden="true"></i> {{user.email}}</span>
           </li>
           {{/if}}
           <li class="nav-item">
@@ -65,13 +69,14 @@
           <li class="nav-item">
             <a class="nav-item nav-link" href="/about">About Us</a>
           </li>
-      </ul>
+        </ul>
+      </div>
     </div>
   </nav>
   <span id="user_id" hidden>{{user.id}}</span>
   <div class="container-fluid">
     {{{ body }}}
   </div>
-  </body>
+</body>
 
 </html>
