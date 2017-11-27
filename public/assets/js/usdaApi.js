@@ -1,4 +1,27 @@
 $(document).ready(function(){
+
+  $('#searchInput').on('keypress', foo => {
+
+    let original = $("#searchInput").val();
+
+    let aSpace = original.replace(' ', 'A');
+
+    let parsed = aSpace.replace(/[^0-9a-z]/gi, '');
+    
+    if(parsed === aSpace && original.trim() !== "") {
+      //removing disabled
+      console.log("Enabling button.");
+      $("#searchBtn").removeAttr('disabled');
+    }
+    else{
+      //adding disabled
+      console.log("Disabling button.");
+      $('#searchBtn').attr( 'disabled', 'disabled' );
+    }
+
+    
+  });
+
   $.fn.extend({
     animateCss: function (animationName) {
       var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
@@ -236,20 +259,20 @@ $(document).ready(function(){
     });
   });
 
+  $(document).on('submit', "#searchForm",  foo => {
+    event.preventDefault();
 
-  $('#searchBtn').on('click', function(){
-    $('#cardsContainer').empty();
-    $('.alert').css('display', 'none')
-    api.requestNutritions()
-  });
 
-  $('#searchInput').on('keydown', function(event){
-    if(event.which === 13){
+    if($("#searchBtn").attr("disabled") === "disabled"){
+      console.log("Search button is disabled");
+    }
+    else{
       $('#cardsContainer').empty();
       $('.alert').css('display', 'none')
-      api.requestNutritions();
+      api.requestNutritions()
     }
   });
+
   $(document).ajaxStart(function(){
     $('#cooking').css('display', 'block');
   });
