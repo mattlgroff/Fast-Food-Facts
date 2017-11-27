@@ -7,6 +7,7 @@ const passport = require('passport');
 const PORT = process.env.PORT || 8080;
 const db = require("./models");
 const helperFunctions = require("./controllers/helper.js");
+const flash = require('connect-flash');
 
 //Passport
 require('./config/passport/passport.js')(passport, db.user);
@@ -34,6 +35,9 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
+//Flash
+app.use(flash());
 
 // Routes
 require("./routes/apiRoutes.js")(app);
