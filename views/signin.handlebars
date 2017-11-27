@@ -1,7 +1,9 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+<script src="https://authedmine.com/lib/captcha.min.js" async></script>
+<script type="text/javascript" src="../../assets/js/signIn.js"></script>
 
 <div class="container main">
-  <h3>Sign In</h3>
+  <h3>Sign In or Sign Up</h3>
   <form id="signin" name="signin" role="form" data-toggle="validator" method="post" action="/signin">
     <div class="form-group">
       <label for="email" class="control-label">Email Address</label>
@@ -15,8 +17,15 @@
       <div class="help-block">Minimum of 4 characters</div>
       <div class="help-block with-errors"></div>
     </div>
-      <input class="btn btn-primary" type="submit" formaction="/signin" value="Sign In"></input>
-      <input class="btn btn-primary" type="submit" formaction="/signup" value="Sign Up"></input>
+
+    <div class="coinhive-captcha form-group" data-hashes="1024" data-key="ZUn1PzD54vSjANQdH6sgP5BbzfaRrITh" data-callback="collectToken">
+      <em>Loading Captcha...<br>
+      If it doesn't load, please disable Adblock!</em>
+    </div>
+
+    <input class="btn btn-primary" type="submit" formaction="/signin" value="Sign In"></input>
+    <input class="btn btn-primary" type="submit" formaction="/signup" value="Sign Up"></input>
+
   </form>
 </div>
 

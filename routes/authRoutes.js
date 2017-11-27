@@ -7,7 +7,7 @@ module.exports = function(app, passport) {
     app.get('/signin', authController.signin);
 
     //SignIn Route POST
-    app.post('/signin', passport.authenticate('local-signin', {
+    app.post('/signin', authController.coinhive, passport.authenticate('local-signin', {
             successRedirect: '/',
 
             failureRedirect: '/signin'
