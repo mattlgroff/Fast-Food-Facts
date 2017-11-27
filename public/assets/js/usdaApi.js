@@ -90,16 +90,16 @@ $(document).ready(function(){
         url: this.toQueryString(),
         type: 'GET'
       }).done(function(data){
-        consolevent.log(data)
+        console.log(data)
           if(!data.errors){
             var dataArr = data.list.item;
             $('#cardsContainer').empty();
             for(var i=0; i < dataArr.length; i++){
               var ndbno = dataArr[i].ndbno;
-              var nameArr = dataArr[i].namevent.split('UPC: ');
+              var nameArr = dataArr[i].name.split('UPC: ');
               var title = nameArr[0].toLowerCase();
               var captializeTitle = capitalizeFirstLetter(title).substring(0, 60);
-              captializeTitlevent.length === 60 ? captializeTitle += '...' : captializeTitle;
+              captializeTitle.length === 60 ? captializeTitle += '...' : captializeTitle;
               if(nameArr[1]){
                 var content = 'UPC: ' + nameArr[1];
               }
@@ -145,11 +145,11 @@ $(document).ready(function(){
         }
         //Make an array out of the nutrients sent to us from USDA
         var nutrientsArr = results.report.food.nutrients;
-        var nameArr = results.report.food.namevent.split('UPC: ');
+        var nameArr = results.report.food.name.split('UPC: ');
         var nameString = nameArr[0].toLowerCase();
         nutritionObj["Name"] = checkForEmptyString(capitalizeFirstLetter(nameString).substring(0, 30));
         nutritionObj["Name"].length === 30 ? nutritionObj["Name"] += '...' : nutritionObj["Name"];
-        if(results.report.food.namevent.indexOf("UPC") === -1){
+        if(results.report.food.name.indexOf("UPC") === -1){
           nutritionObj["USDA ID"] = 'N/A';
         }
         else {
@@ -157,59 +157,59 @@ $(document).ready(function(){
         }
         //Going over each item of the nutrients array looking for our values
         nutrientsArr.forEach(function(currentValue, index, array) {
-          if (nutrientsArr[index].namevent.includes("Energy") ){
+          if (nutrientsArr[index].name.includes("Energy") ){
             nutritionObj["Calories"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
 
-          if (nutrientsArr[index].namevent.includes("Total lipid") ){
+          if (nutrientsArr[index].name.includes("Total lipid") ){
             nutritionObj["Total Fat"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
 
-          if (nutrientsArr[index].namevent.includes("saturated") ){
+          if (nutrientsArr[index].name.includes("saturated") ){
             nutritionObj["Saturated Fat"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
 
-          if (nutrientsArr[index].namevent.includes("trans") ){
+          if (nutrientsArr[index].name.includes("trans") ){
             nutritionObj["Trans Fat"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
 
-          if (nutrientsArr[index].namevent.includes("Cholesterol") ){
+          if (nutrientsArr[index].name.includes("Cholesterol") ){
             nutritionObj["Cholesterol"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
 
-          if (nutrientsArr[index].namevent.includes("Sodium") ){
+          if (nutrientsArr[index].name.includes("Sodium") ){
             nutritionObj["Sodium"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
 
-          if (nutrientsArr[index].namevent.includes("Carbohydrate") ){
+          if (nutrientsArr[index].name.includes("Carbohydrate") ){
             nutritionObj["Total Carbohydrate"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
 
-          if (nutrientsArr[index].namevent.includes("Fiber") ){
+          if (nutrientsArr[index].name.includes("Fiber") ){
             nutritionObj["Dietary Fiber"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
 
-          if (nutrientsArr[index].namevent.includes("Sugars") ){
+          if (nutrientsArr[index].name.includes("Sugars") ){
             nutritionObj["Sugars"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
 
-          if (nutrientsArr[index].namevent.includes("Protein") ){
+          if (nutrientsArr[index].name.includes("Protein") ){
             nutritionObj["Protein"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value)));
           }
 
-          if (nutrientsArr[index].namevent.includes("Vitamin A") === true && nutrientsArr[index].unit.includes("IU") === true){
+          if (nutrientsArr[index].name.includes("Vitamin A") === true && nutrientsArr[index].unit.includes("IU") === true){
             nutritionObj["Vitamin A"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value) / 5000) * 100);
           }
 
-          if (nutrientsArr[index].namevent.includes("Vitamin C")  === true && nutrientsArr[index].unit.includes("mg") === true){
+          if (nutrientsArr[index].name.includes("Vitamin C")  === true && nutrientsArr[index].unit.includes("mg") === true){
             nutritionObj["Vitamin C"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value) / 60) * 100);
           }
 
-          if (nutrientsArr[index].namevent.includes("Calcium") ){
+          if (nutrientsArr[index].name.includes("Calcium") ){
             nutritionObj["Calcium"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value) / 1000) * 100);
           }
 
-          if (nutrientsArr[index].namevent.includes("Iron") ){
+          if (nutrientsArr[index].name.includes("Iron") ){
             nutritionObj["Iron"] = Math.round(parseFloat(checkForEmptyInt(nutrientsArr[index].value) / 18) * 100);
           }
 
@@ -222,7 +222,7 @@ $(document).ready(function(){
   $('#cardsContainer').on('click', 'a.nutritionCard', function() {
     var ndbno = $(this).data().ndbno;
     api.searchByNdbno(ndbno, function(obj){
-      consolevent.log(obj)
+      console.log(obj)
       $.ajax({
         url: '/create',
         method:'POST',
@@ -257,7 +257,7 @@ $(document).ready(function(){
       api.requestNutritions();
     }
   });
-  
+
   $(document).ajaxStart(function(){
     $('#cooking').css('display', 'block');
   });
