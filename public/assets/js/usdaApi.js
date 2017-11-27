@@ -90,8 +90,8 @@ $(document).ready(function(){
         url: this.toQueryString(),
         type: 'GET'
       }).done(function(data){
-        console.log(data)
-          if(!data.errors){
+        console.log("data: " + data.body);
+          if(!data.errors && data.body != null && data.body != 'undefined') {
             var dataArr = data.list.item;
             $('#cardsContainer').empty();
             for(var i=0; i < dataArr.length; i++){
@@ -244,8 +244,9 @@ $(document).ready(function(){
   });
     
   $('#searchInput').on('keydown', function(event){
-    if ((event.which < 32 && event.which > 33) ||
-      (event.which < 48) || 
+    if ((event.which < 8) ||
+      (event.which > 9 && event.which < 32) ||
+      (event.which > 33 && event.which < 48) ||
       (event.which > 57 && event.which < 65) || 
       (event.which > 90 && event.which < 97) ||
       (event.which > 122)) {
