@@ -1,12 +1,11 @@
 <div class="container main">
-  <div class="jumbotron">
+  <div class="jumbotron shadow">
     <h1 class="display-3">Fast Food Facts</h1>
     <p class="lead">Welcome to the best Nutrition Facts creating, saving, and sharing hub!</p>
-    <hr class="my-4">
     {{#unless user.email}}
     <p>To create and save Nutrition Facts you must create an account or sign in to an existing account.</p>
     <p class="lead">
-      <a class="btn btn-primary btn-lg" href="/signin" role="button">Sign In or Sign Up</a>
+      <a class="btn btn-trans btn-lg" href="/signin" role="button">Sign In or Sign Up</a>
     </p>
     {{else}}
     <p class="lead">

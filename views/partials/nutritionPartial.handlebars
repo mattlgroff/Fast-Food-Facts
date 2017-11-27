@@ -20,10 +20,7 @@
     </div>
   </div>
 
-</div>
-
-<div class="modal-body">
-  <div class="container">
+  <div class="modal-body">
     <div class="row">
 
       <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6"> <!-- Begin First Col -->
@@ -315,21 +312,20 @@
       </div> <!-- End Second Col -->
     </div> <!-- End Row-->
   </div><!-- End Container Main -->
+  <div class="modal-footer">
+
+    <button id="addToList" class="btn btn-primary">Add {{nutrition.[Name]}} to My List</button>
+
+    {{#if user.email}}
+    <a class="btn btn-primary" href="/mylist">My List</a>
+    {{/if}}
+
+    <a class="btn btn-primary facebook-share-button" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffastfoodfacts.herokuapp.com%2Fnutrition%2F{{nutrition.id}}&amp;src=sdkpreparse">
+      <i class="fa fa-inverse fa-lg fa-facebook"></i>
+    </a>
+
+    <a class="btn btn-primary twitter-share-button" target="_blank" href="https://twitter.com/intent/tweet?text=Check%20out%20my%20Nutrition%20Facts%20for%20{{nutrition.[Name]}}&url=http://fastfoodfacts.herokuapp.com/nutrition/{{nutrition.id}}&hashtags=FastFoodFacts">
+      <i class="fa fa-inverse fa-lg fa-twitter"></i>
+    </a>
+  </div>
 </div>
-<div class="modal-footer">
-
-  <button id="addToList" class="btn btn-primary">Add {{nutrition.[Name]}} to My List</button>
-
-  {{#if user.email}}
-  <a class="btn btn-primary" href="/mylist">My List</a>
-  {{/if}}
-
-  <a class="btn btn-primary facebook-share-button" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Ffastfoodfacts.herokuapp.com%2Fnutrition%2F{{nutrition.id}}&amp;src=sdkpreparse">
-    <i class="fa fa-inverse fa-lg fa-facebook"></i>
-  </a>
-
-  <a class="btn btn-primary twitter-share-button" target="_blank" href="https://twitter.com/intent/tweet?text=Check%20out%20my%20Nutrition%20Facts%20for%20{{nutrition.[Name]}}&url=http://fastfoodfacts.herokuapp.com/nutrition/{{nutrition.id}}&hashtags=FastFoodFacts">
-    <i class="fa fa-inverse fa-lg fa-twitter"></i>
-  </a>
-</div>
-
