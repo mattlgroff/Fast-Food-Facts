@@ -7,7 +7,7 @@ $(document).ready(function(){
     let aSpace = original.replace(' ', 'A');
 
     let parsed = aSpace.replace(/[^0-9a-z]/gi, '');
-    
+
     if(parsed === aSpace && original.trim() !== "") {
       //removing disabled
       console.log("Enabling button.");
@@ -19,7 +19,7 @@ $(document).ready(function(){
       $('#searchBtn').attr( 'disabled', 'disabled' );
     }
 
-    
+
   });
 
   $.fn.extend({
@@ -149,7 +149,7 @@ $(document).ready(function(){
             }
           }
           else {
-            $('.alert').css('display', 'block');
+            $('.errorAlert').css('display', 'block');
           }
       });
     },
@@ -263,9 +263,9 @@ $(document).ready(function(){
   //   if ((event.which < 8) ||
   //     (event.which > 9 && event.which < 32) ||
   //     (event.which > 33 && event.which < 48) ||
-  //     (event.which > 57 && event.which < 65) || 
+  //     (event.which > 57 && event.which < 65) ||
   //     (event.which > 90 && event.which < 97) ||
-  //     (event.which > 122)) 
+  //     (event.which > 122))
   //   {
   //     event.preventDefault();
   //     $("#searchInput").val("");
@@ -280,7 +280,7 @@ $(document).ready(function(){
     }
     else{
       $('#cardsContainer').empty();
-      $('.alert').css('display', 'none')
+      $('.errorAlert').css('display', 'none')
       api.requestNutritions()
     }
   });
