@@ -108,6 +108,7 @@ help-block {
 }
 
 .performance-facts {
+  background-color: white;
   border: 1px solid black;
   margin: 0px;
   width: 100%;
@@ -121,6 +122,8 @@ help-block {
   font-weight: bold;
   font-size: 1rem;
   margin: 0 0 0.25rem 0;
+  text-shadow: none;
+  color: black !important;
 }
 
 .performance-facts__header {
