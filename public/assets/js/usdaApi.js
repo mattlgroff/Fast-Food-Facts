@@ -68,6 +68,7 @@ $(document).ready(function(){
     */
     toQueryString: function(){
       var query = $('#searchInput').val().trim();
+      query = query.replace(/[^A-Z0-9]+/i, '');
       var queryStr = '';
       if (this.filters.length !== 0){
         for (var i in this.filters){
@@ -89,8 +90,8 @@ $(document).ready(function(){
         url: this.toQueryString(),
         type: 'GET'
       }).done(function(data){
-        console.log(data)
-          if(!data.errors){
+        console.log("data: " + data.body);
+          if(!data.errors && data.body != null && data.body != 'undefined') {
             var dataArr = data.list.item;
             $('#cardsContainer').empty();
             for(var i=0; i < dataArr.length; i++){
@@ -236,20 +237,28 @@ $(document).ready(function(){
     });
   });
 
-
   $('#searchBtn').on('click', function(){
     $('#cardsContainer').empty();
     $('.alert').css('display', 'none')
     api.requestNutritions()
   });
-
+    
   $('#searchInput').on('keydown', function(event){
-    if(event.which === 13){
+    if ((event.which < 8) ||
+      (event.which > 9 && event.which < 32) ||
+      (event.which > 33 && event.which < 48) ||
+      (event.which > 57 && event.which < 65) || 
+      (event.which > 90 && event.which < 97) ||
+      (event.which > 122)) {
+      event.preventDefault();
+    }
+    else if (event.which === 13){
       $('#cardsContainer').empty();
       $('.alert').css('display', 'none')
       api.requestNutritions();
     }
   });
+
   $(document).ajaxStart(function(){
     $('#cooking').css('display', 'block');
   });
