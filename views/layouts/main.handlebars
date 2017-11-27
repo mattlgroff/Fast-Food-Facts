@@ -27,15 +27,16 @@
     <link rel="stylesheet" type="text/css" href="../../assets/css/loader.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
 
-    <!-- jQuery -->
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
 
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-md navbar-light" style="background-color: #E96967;">
-      <div class="container">
+    <nav class="navbar navbar-expand-md" id="mainNav">
+      <div class="container collapse navbar-collapse">
         <a class="navbar-brand" href="/index">Fast Food Facts</a>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="navbar-nav">
           {{#if user.email}}
           <li class="nav item">
             <span class="nav-item nav-link">Logged in as: {{user.email}}</span>
@@ -68,7 +69,9 @@
     </div>
   </nav>
   <span id="user_id" hidden>{{user.id}}</span>
-  {{{ body }}}
+  <div class="container-fluid">
+    {{{ body }}}
+  </div>
   </body>
 
 </html>
