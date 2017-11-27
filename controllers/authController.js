@@ -3,10 +3,6 @@ module.exports.signin = function(req, res) {
   let password = req.flash('password');
   let message = req.flash('message');
 
-  console.log("User: " + user);
-  console.log("Password: " + password);
-  console.log("Message: ") + message;
-
   res.render('signin', {
     user:req.user, 
     message: {
@@ -22,10 +18,6 @@ module.exports.signup = function(req, res) {
   let user = req.flash('user');
   let password = req.flash('password');
   let message = req.flash('message');
-
-  console.log("User: " + user);
-  console.log("Password: " + password);
-  console.log("Message: ") + message;
 
   res.render('signin', {
     user:req.user, 
