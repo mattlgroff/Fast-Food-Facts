@@ -11,15 +11,23 @@
   float: left;
   margin: 20px;
 }
-
 body {
   font-size: small;
-  line-height: 1.4;
   overflow: auto;
+  line-height: 1.4;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/background.jpeg');
   background-position: top;
   background-size: cover;
 }
+/*#nutritionPage {
+background-color: white;
+color: #000000 !important;
+height: 100%;
+}
+#nutritionPage *> h3 {
+color: #000000 !important;
+text-shadow: 0px 0px 0px black;
+}*/
 
 p {
   margin: 0;
@@ -69,6 +77,21 @@ help-block {
 
 .shadow {
   text-shadow: 2px 2px 1px black;
+  color: white;
+}
+.nutritionImgDiv {
+  border-color: transparent;
+  background-color: transparent;
+  color: #dddddd;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  width: 260px;
+}
+.nutritionImg {
+
+  padding: 10px;
+  position: relative;
+  left: -1;
 }
 
 .btn-trans {
@@ -76,8 +99,7 @@ help-block {
   margin-top: 10px;
 }
 
-#searchBtn.btn,
-#searchInput {
+submit#searchBtn, #searchInput {
   background-color: rgba(0, 0, 0, 0.5);
   color: #dddddd;
   font-weight: bold;
@@ -91,15 +113,26 @@ help-block {
 
 .searchBar {
   position: relative;
-  height: 300px;
+  height: 170px;
+}
+.searchInfo {
+  position: relative;
+  top: 20px;
+  font-size: 15px;
+  text-align: center;
+}
+.errorAlert {
+  display: none;
+  position: relative;
+  top: 15px;
+  left: 15px;
 }
 
 .input-group {
-  top: 120px;
+  top: 40px;
 }
-
 .red {
-  color: red;
+  color: rgb(186, 76, 74);
 }
 
 .float_right {
@@ -108,14 +141,20 @@ help-block {
 }
 
 .performance-facts {
-  background-color: white;
-  border: 1px solid black;
+  border-color: transparent;
+  background-color: transparent;
+  color: #dddddd;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  border: 2px solid rgba(255, 255, 255, 0.2);
   margin: 0px;
   width: 100%;
-  padding: 0.2rem;
+  padding: 0.3rem;
   table {
     border-collapse: collapse;
   }
+}
+.performance-facts#modalFacts {
+  background-color: #000000;
 }
 
 .performance-facts__title {
@@ -123,11 +162,11 @@ help-block {
   font-size: 1rem;
   margin: 0 0 0.25rem 0;
   text-shadow: none;
-  color: black !important;
+  color: white;
 }
 
 .performance-facts__header {
-  border-bottom: 10px solid black;
+  border-bottom: 10px solid white;
   padding: 0 0 0.25rem 0;
   margin: 0 0 0.5rem 0;
   p {
@@ -164,6 +203,7 @@ help-block {
     th,
     td {
       border-top-width: 5px;
+
     }
   }
 }
@@ -209,11 +249,11 @@ help-block {
 }
 
 .thick-end {
-  border-bottom: 10px solid black;
+  border-bottom: 10px solid white;
 }
 
 .thin-end {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
 }
 
 th,
@@ -231,11 +271,15 @@ td {
 }
 
 .mylistcard {
+  border-color: transparent;
+  background-color: transparent;
+  color: #dddddd;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  border: 2px solid rgba(255, 255, 255, 0.2);
   width: 33.33%;
   height: 100px;
   margin: 10px 0px;
   padding: 10px;
-  border: 1px solid grey;
   border-radius: 10px;
 }
 
@@ -247,9 +291,20 @@ div.alert {
   height: auto;
   margin: 5px;
 }
+.mask {
+  border-color: transparent;
+  background-color: transparent;
+  color: #dddddd;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  margin: 60px 5px 5px 0px;
+  width: 520px;
+  height: 520px;
+  padding: 10px;
+}
 #piechart {
   position: relative;
-  left: -100px;
+  left: -38px;
 }
 .modal-dialog {
   max-width: 100%;
@@ -266,6 +321,7 @@ div.alert {
 
 .btn-primary {
   border: none;
+  margin: 5px 0;
 }
 
 
@@ -368,25 +424,53 @@ div.alert {
 .form-control {
   max-width: 100%;
 }
-@media (min-width: 425px) {
-  #piechart {
-    position: relative;
-    left: -30px;
-  }
-}
-@media (min-width: 768px) {
+@media (min-width: 1025px) {
   .modal-body, .modal-content {
-    max-width: 650px;
+    max-width: 1200px;
   }
   .performance-facts {
-    margin: 10px 10px;
+    margin: 10px;
   }
   .modal-dialog {
-    max-width: 650px;
-    margin: 30px auto;
+    max-width: 1200px;
+    margin: 10px auto;
+  }
+  #piechart.lg {
+    max-width: 440px;
+    max-height: 360px;
+    position: relative;
+    left: -1px;
+  }
+  .nutritionImg {
+    width: 460px;
+    height: 400px;
+    left: 0;
+  }
+  .nutritionImgDiv {
+    width: 460px;
+  }
+  .mask {
+    width: 460px;
+    height: 380px;
+    position: relative;
+    left: 0px;
+  }
+  .performance-facts {
+    margin: 1px 5px;
+    width: 500px;
+    height: auto;
+  }
+  .small-info {
+    font-size: 0.9rem;
+  }
+  .performance-facts__title, .performance-facts__header {
+    font-size: 1.5em;
+  }
+  th,td {
+    font-size: 0.9rem;
   }
 }
-@media (min-width: 960px) {
+@media (max-width: 1024px) {
   .modal-body, .modal-content {
     max-width: 800px;
   }
@@ -397,16 +481,127 @@ div.alert {
     max-width: 800px;
     margin: 10px auto;
   }
+  #cooking {
+    top: -220px;
+    left: -60px;
+  }
+  #piechart.lg {
+    max-width: 380px;
+    max-height: 380px;
+    position: relative;
+    left: -1px;
+  }
+  .nutritionImg {
+    width: 400px;
+    height: 320px;
+    left: 0;
+  }
+  .nutritionImgDiv {
+    width: 400px;
+  }
+  .mask {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    left: 0px;
+  }
+  .performance-facts {
+    margin: 1px 5px;
+  }
 }
+
 @media (max-width: 768px) {
+  #piechart {
+    position: relative;
+    left: -34px;
+  }
+  .searchInfo {
+    font-size: 16px;
+  }
   .modal-body, .modal-content {
     max-width: 800px;
   }
   .performance-facts {
-    margin: 5px;
+    margin: 3px 5px;
   }
   .modal-dialog {
     width: 420px;
     margin: 10px auto;
+  }
+  #cooking {
+    top: -185px;
+    left: -105px;
+  }
+  #piechart.m {
+    max-width: 340px;
+    max-height: 340px;
+    position: relative;
+    left: -1px;
+  }
+  .nutritionImg {
+    width: 360px;
+    height: 280px;
+    left: 0;
+  }
+  .nutritionImgDiv {
+    width: 360px;
+  }
+  .mask {
+    width: 360px;
+    height: 360px;
+    position: relative;
+    left: 0px;
+  }
+}
+@media (max-width: 575px) {
+  #piechart.m {
+    max-width: 350px;
+    max-height: 350px;
+    position: relative;
+    left: -1px;
+  }
+  #piechart {
+    position: relative;
+    left: -34px;
+  }
+  .mask {
+    width: 370px;
+    height: 370px;
+    position: relative;
+    left: 0px;
+  }
+  .nutritionImg {
+    width: 370px;
+    height: 280px;
+    left: 0;
+  }
+  .nutritionImgDiv {
+    width: 370px;
+  }
+}
+@media (max-width: 375px) {
+  #piechart.s {
+    max-width: 240px;
+    max-height: 240px;
+    position: relative;
+    left: -1px;
+  }
+  #piechart {
+    position: relative;
+    left: -34px;
+  }
+  .mask {
+    width: 260px;
+    height: 260px;
+    position: relative;
+    left: 0px;
+  }
+  .nutritionImg {
+    width: 260px;
+    height: 260px;
+    left: 0;
+  }
+  .nutritionImgDiv {
+    width: 260px;
   }
 }
