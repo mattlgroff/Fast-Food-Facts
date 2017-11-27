@@ -23,15 +23,17 @@
   <div class="modal-body">
     <div class="row">
 
-      <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6"> <!-- Begin First Col -->
-        <div id="piechart" width='500px'>
+      <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6"><!-- Begin First Col -->
+        <div id="mask">
+          <div id="piechart">
+          </div>
         </div>
         {{#if image}}
         <img src="{{image}}" alt="" width="260px" height="260px" style="padding: 10px;">
         {{/if}}
       </div> <!-- End First Col -->
 
-      <div class="col-sm-12 col-xs-12 col-md-6 col-lg-2"><!-- Begin Second Col -->
+      <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6"><!-- Begin Second Col -->
         <section class="performance-facts">
           <header class="performance-facts__header">
             <h3 class="performance-facts__title"><span id="item">{{nutrition.[Name]}}</span></h3>
@@ -313,9 +315,7 @@
     </div> <!-- End Row-->
   </div><!-- End Container Main -->
   <div class="modal-footer">
-
-    <button id="addToList" class="btn btn-primary">Add {{nutrition.[Name]}} to My List</button>
-
+    <button id="addToList" class="btn btn-primary">Add to My List</button>
     {{#if user.email}}
     <a class="btn btn-primary" href="/mylist">My List</a>
     {{/if}}
@@ -328,4 +328,5 @@
       <i class="fa fa-inverse fa-lg fa-twitter"></i>
     </a>
   </div>
+</div>
 </div>

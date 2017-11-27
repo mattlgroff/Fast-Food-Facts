@@ -84,8 +84,8 @@ p {
 
 .performance-facts {
   border: 1px solid black;
-  margin: 10px;
-  width: 320px;
+  margin: 0px;
+  width: 100%;
   padding: 0.2rem;
   table {
     border-collapse: collapse;
@@ -203,8 +203,17 @@ div.alert {
   display: none;
 }
 .modal-body, .modal-content {
-  width: 800px;
-  height: 670px;
+  max-width: 100%;
+  height: auto;
+  margin: 5px;
+}
+#piechart {
+  position: relative;
+  left: -100px;
+}
+.modal-dialog {
+  max-width: 100%;
+  margin: 30px auto;
 }
 .twitter-share-button {
   background-color: rgb(74,180,245);
@@ -295,28 +304,45 @@ div.alert {
   animation-delay: 2s;
   -webkit-animation-delay: 2s;
 }
-
-@media screen and (min-width: 576px) {
+@media (min-width: 425px) {
+  #piechart {
+    position: relative;
+    left: -30px;
+  }
+}
+@media (min-width: 768px) {
+  .modal-body, .modal-content {
+    max-width: 650px;
+  }
+  .performance-facts {
+    margin: 10px 10px;
+  }
   .modal-dialog {
-    max-width: 800px;
-    height: auto;
+    max-width: 650px;
     margin: 30px auto;
   }
 }
-@media screen and (min-width: 320px) {
-  .modal-dialog {
-    max-width: 320px;
-    height: auto;
-  }
+@media (min-width: 960px) {
   .modal-body, .modal-content {
-    width: 320px;
-    height: auto;
-    padding: 5px;
+    max-width: 800px;
   }
-  .searchBar {
-    height: 120px;
+  .performance-facts {
+    margin: 10px;
   }
-  .input-group {
-    top: 60px;
+  .modal-dialog {
+    max-width: 800px;
+    margin: 10px auto;
+  }
+}
+@media (max-width: 768px) {
+  .modal-body, .modal-content {
+    max-width: 800px;
+  }
+  .performance-facts {
+    margin: 5px;
+  }
+  .modal-dialog {
+    width: 420px;
+    margin: 10px auto;
   }
 }
