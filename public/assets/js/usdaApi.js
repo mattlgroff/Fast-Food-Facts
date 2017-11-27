@@ -1,19 +1,5 @@
 $(document).ready(function(){
 
-
-  $('#searchInput').on('keydown', function(event){
-    if ((event.which < 8) ||
-      (event.which > 9 && event.which < 32) ||
-      (event.which > 33 && event.which < 48) ||
-      (event.which > 57 && event.which < 65) || 
-      (event.which > 90 && event.which < 97) ||
-      (event.which > 122)) 
-    {
-      event.preventDefault();
-      $("#searchInput").val("");
-    }
-    
-
   $('#searchInput').on('keypress', foo => {
 
     let original = $("#searchInput").val();
@@ -104,8 +90,7 @@ $(document).ready(function(){
     * @return {[String]} [BaseUrl String with query and filters]
     */
     toQueryString: function(){
-      var query = $('#searchInput').val().trim();
-      query = query.replace(/[^A-Z0-9]+/i, '');
+      var query = $('#searchInput').val();
       var queryStr = '';
       if (this.filters.length !== 0){
         for (var i in this.filters){
@@ -127,8 +112,8 @@ $(document).ready(function(){
         url: this.toQueryString(),
         type: 'GET'
       }).done(function(data){
-        console.log("data: " + data.body);
-          if(!data.errors && data.body != null && data.body != 'undefined') {
+        console.log("data: " + data.list);
+          if(!data.errors && data.list != null && data.list != 'undefined') {
             var dataArr = data.list.item;
             $('#cardsContainer').empty();
             for(var i=0; i < dataArr.length; i++){
@@ -273,6 +258,18 @@ $(document).ready(function(){
       });
     });
   });
+
+  // $('#searchInput').on('keydown', function(event){
+  //   if ((event.which < 8) ||
+  //     (event.which > 9 && event.which < 32) ||
+  //     (event.which > 33 && event.which < 48) ||
+  //     (event.which > 57 && event.which < 65) || 
+  //     (event.which > 90 && event.which < 97) ||
+  //     (event.which > 122)) 
+  //   {
+  //     event.preventDefault();
+  //     $("#searchInput").val("");
+  //   }
 
 
   $(document).on('submit', "#searchForm",  foo => {
