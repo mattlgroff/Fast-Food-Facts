@@ -13,9 +13,8 @@ module.exports = {
         var walmartApiKey = process.env.walmartApiKey;
         request('http://api.walmartlabs.com/v1/items?apiKey='+walmartApiKey+'&upc='+results.dataValues['USDA ID']+'', function(err, respone, body){
           if(body === undefined || body.toString().includes('error')) {
-            res.render("partials/nutritionPartial", {
+            res.render("nutrition", {
               nutrition: results.dataValues,
-              layout: false,
               user: req.user
             });
           }
