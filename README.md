@@ -1,6 +1,6 @@
-# Project 2: Electric Boogaloo
-Featuring: Z, Carlos, Matt and Jack.
-[Electric Boogaloo](https://electricboogaloo.herokuapp.com/)
+# Fast Food Facts
+Featuring: Zazil, Carlos, Matt and Jack.
+[Fast Food Facts](http://fastfoodfacts.herokuapp.com)
 
 # API ROUTES
 GET /api/all
@@ -31,17 +31,3 @@ POST /api/new
   "Category": "None"
 }
 ```
-
-# HTML ROUTES
-GET /nutrition/{id}
-
-GET /create
-
-POST /create
-
-GET /search
-
-GET /signin
-
-POST /signin
-
