@@ -20,16 +20,16 @@
     <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6"><!-- Begin Second Col -->
       {{#if nutrition.[USDA ID]}}<h3 class="shadow text-center">USDA Verified Data</h3><p class="shadow text-center">Nutrition facts provided by the USDA.</p>
       {{else}}<h3 class="red text-center">User Submitted Data</h3><p class="red text-center">Nutrition facts may not be complete or accurate.</p>{{/if}}
-      <section class="performance-facts">
-        <header class="performance-facts__header">
-          <h3 class="performance-facts__title"><span id="item">{{nutrition.[Name]}}</span></h3>
+      <section class="performance-facts" id="nutritionFacts">
+        <header class="performance-facts__header" id="nutritionFactsHeader">
+          <h3 class="performance-facts__title" id="nutritionFactsTitle"><span id="item">{{nutrition.[Name]}}</span></h3>
           <p>ID: <span id="nutritionID">{{nutrition.id}}</span></p>
           <p>Serving Size {{nutrition.[Serving Size]}}</p>
         </header>
         <table class="performance-facts__table">
           <thead>
             <tr>
-              <th colspan="3" class="small-info">
+              <th colspan="3" class="small-info nutritionFacts">
                 Nutrition Per Serving
               </th>
             </tr>
@@ -45,7 +45,7 @@
               </td>
             </tr>
             <tr class="thick-row">
-              <td colspan="3" class="small-info">
+              <td colspan="3" class="small-info nutritionFacts">
                 <b class="float_right">% Daily Value*</b>
               </td>
             </tr>
@@ -234,9 +234,9 @@
           </tbody>
         </table>
 
-        <p class="small-info">* Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs:</p>
+        <p class="small-info nutritionFacts">* Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs:</p>
 
-        <table class="performance-facts__table--small small-info">
+        <table class="performance-facts__table--small small-info  nutritionFacts">
           <thead>
             <tr>
               <td colspan="2"></td>
@@ -285,7 +285,7 @@
           </tbody>
         </table>
 
-        <p class="small-info">
+        <p class="small-info  nutritionFacts">
           Calories per gram:
         </p>
         <p class="small-info text-center">
