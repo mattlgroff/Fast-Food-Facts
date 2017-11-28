@@ -13,13 +13,13 @@
 }
 body {
   font-size: small;
-  overflow-y: auto;
-  overflow-x: hidden;
   line-height: 1.4;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/background.jpeg');
   background-position: top;
   background-size: cover;
-  /*margin-bottom: 60px;*/
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  margin-bottom: 60px;
 }
 html, body {
   height: 100%;
