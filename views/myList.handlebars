@@ -1,11 +1,11 @@
 <script type="text/javascript" src="../../assets/js/myList.js"></script>
 
 <div class="container main">
-  <h1 class="text-center">My List</h1>
+  <h1 class="text-center animated fadeIn delay-03s">My List</h1>
   <div class="row" id="cardsContainer">
     {{#each myList}}
-        <a class="nutritionCard animated fadeInUp delay-00s" href="/nutrition/{{nutrition_id}}">
-        <div class="mylistcard col-12 col-sm-12 col-md-6 col-lg-4">
+        <a class="nutritionCard" href="/nutrition/{{nutrition_id}}">
+        <div class="mylistcard col-12 col-sm-12 col-md-6 col-lg-4 animated fadeInUp delay-03s">
           <div class="card-block">
             <h4 class="mylistTitle">{{nutrition_name}}</h4>
 

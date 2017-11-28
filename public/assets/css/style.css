@@ -341,7 +341,6 @@ div.alert {
   margin: 5px 0;
 }
 
-
 /*animation timers*/
 
 .delay-02s {
@@ -626,5 +625,8 @@ div.alert {
   }
   .nutritionImgDiv {
     width: 260px;
+  }
+  .lead {
+    font-size: 1em;
   }
 }
