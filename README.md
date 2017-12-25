@@ -1,6 +1,7 @@
 # Fast Food Facts
 Featuring: Zazil, Carlos, Matt and Jack.
 [Fast Food Facts](http://fastfoodfacts.herokuapp.com)
+Welcome to the best Nutrition Facts creating, saving, and sharing hub! With Fast Food Facts you can search for pre-populated nutritions from the USDA database or you can create your own nutrition label! if you sign up for an account you can save your nutrition labels and view or share them on social media (facebook, twitter).
 
 # API ROUTES
 GET /api/all
